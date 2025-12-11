@@ -1,0 +1,3349 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+    --font-size: 16px;
+    --background: #ffffff;
+    --foreground: oklch(0.145 0 0);
+    --card: #ffffff;
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: #030213;
+    --primary-foreground: oklch(1 0 0);
+    --secondary: oklch(0.95 0.0058 264.53);
+    --secondary-foreground: #030213;
+    --muted: #ececf0;
+    --muted-foreground: #717182;
+    --accent: #e9ebef;
+    --accent-foreground: #030213;
+    --destructive: #d4183d;
+    --destructive-foreground: #ffffff;
+    --border: rgba(0, 0, 0, 0.1);
+    --input: transparent;
+    --input-background: #f3f3f5;
+    --switch-background: #cbced4;
+    --font-weight-medium: 500;
+    --font-weight-normal: 400;
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: #030213;
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+
+    /* Colony Brand Colors */
+    --colony-primary-blue: #1C6AFF;
+    --colony-secondary-violet: #8C7AE7;
+    --colony-aqua: #98F1CF;
+    --colony-accent-yellow: #FBC24E;
+    --colony-background: #F4F6FA;
+
+    /* Accessibility Variables */
+    --accent-primary: #1C6AFF;
+    --accent-secondary: #8C7AE7;
+    --accent-tertiary: #5B8FF9;
+    --accent-color: #1C6AFF;
+    --base-font-size: 14px;
+    --text-scale: 1;
+
+    /* Card backgrounds */
+    --card-bg: #FFFFFF;
+    --card-nested: #F9FAFB;
+
+    /* Font family */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Apply base font size to body */
+body {
+    font-size: calc(var(--base-font-size) * var(--text-scale));
+}
+
+/* Apply font size scaling to all text elements */
+p, span, div, a, button, input, textarea, label, li {
+    font-size: inherit;
+}
+
+.dark {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card: #1e293b;
+    --card-foreground: #f8fafc;
+    --popover: #1e293b;
+    --popover-foreground: #f8fafc;
+    --primary: #f8fafc;
+    --primary-foreground: #0f172a;
+    --secondary: #334155;
+    --secondary-foreground: #f8fafc;
+    --muted: #334155;
+    --muted-foreground: #cbd5e1;
+    --accent: #334155;
+    --accent-foreground: #f8fafc;
+    --destructive: #dc2626;
+    --destructive-foreground: #f8fafc;
+    --border: #334155;
+    --input: #334155;
+    --ring: #64748b;
+    --font-weight-medium: 500;
+    --font-weight-normal: 400;
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --sidebar: #1e293b;
+    --sidebar-foreground: #f8fafc;
+    --sidebar-primary: #60a5fa;
+    --sidebar-primary-foreground: #f8fafc;
+    --sidebar-accent: #334155;
+    --sidebar-accent-foreground: #f8fafc;
+    --sidebar-border: #334155;
+    --sidebar-ring: #64748b;
+
+    /* Card backgrounds for dark mode */
+    --card-bg: #1e293b;
+    --card-nested: #334155;
+
+    /* Colony background for dark mode */
+    --colony-background: #0f172a;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-input-background: var(--input-background);
+    --color-switch-background: var(--switch-background);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    html,
+    body {
+        @apply bg-background text-foreground;
+        min-height: 100vh;
+        margin: 0;
+    }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+    :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+        h1 {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-size: var(--text-xl);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        h3 {
+            font-size: var(--text-lg);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        h4 {
+            font-size: var(--text-base);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        p {
+            font-size: var(--text-base);
+            font-weight: var(--font-weight-normal);
+            line-height: 1.5;
+        }
+
+        label {
+            font-size: var(--text-base);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        button {
+            font-size: var(--text-base);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        input {
+            font-size: var(--text-base);
+            font-weight: var(--font-weight-normal);
+            line-height: 1.5;
+        }
+    }
+}
+
+html {
+    font-size: var(--font-size);
+}
+
+/* Ensure lucide-react SVG icons render properly */
+svg {
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Dynamic accent color replacement - replaces hardcoded blue with selected accent color */
+/* Only exclude accent color swatches from replacement */
+[class*="bg-[#1C6AFF]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#1c6aff]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+[class*="text-[#1C6AFF]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#1c6aff]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+[class*="border-[#1C6AFF]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#1c6aff]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    border-color: var(--accent-color) !important;
+}
+
+[class*="ring-[#1C6AFF]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="ring-[#1c6aff]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    --tw-ring-color: var(--accent-color) !important;
+}
+
+[class*="from-[#1C6AFF]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="from-[#1c6aff]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    --tw-gradient-from: var(--accent-color) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(from var(--accent-color) r g b / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+[class*="to-[#1C6AFF]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="to-[#1c6aff]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    --tw-gradient-to: var(--accent-color) var(--tw-gradient-to-position) !important;
+}
+
+/* Replace gradients with opacity variants */
+[class*="from-[#1C6AFF]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="from-[#1c6aff]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    --tw-gradient-from: rgb(from var(--accent-color) r g b / 0.1) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(from var(--accent-color) r g b / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+[class*="to-[#1C6AFF]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="to-[#1c6aff]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    --tw-gradient-to: rgb(from var(--accent-color) r g b / 0.1) var(--tw-gradient-to-position) !important;
+}
+
+/* Replace secondary color (#8C7AE7) with gradient secondary when custom gradient is enabled */
+.custom-gradient [class*="bg-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--gradient-secondary) !important;
+}
+
+.custom-gradient [class*="text-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--gradient-secondary) !important;
+}
+
+.custom-gradient [class*="border-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="border-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    border-color: var(--gradient-secondary) !important;
+}
+
+.custom-gradient [class*="from-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="from-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    --tw-gradient-from: var(--gradient-secondary) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(from var(--gradient-secondary) r g b / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.custom-gradient [class*="to-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="to-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    --tw-gradient-to: var(--gradient-secondary) var(--tw-gradient-to-position) !important;
+}
+
+.custom-gradient [class*="from-[#8C7AE7]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="from-[#8c7ae7]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    --tw-gradient-from: rgb(from var(--gradient-secondary) r g b / 0.1) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(from var(--gradient-secondary) r g b / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.custom-gradient [class*="to-[#8C7AE7]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="to-[#8c7ae7]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    --tw-gradient-to: rgb(from var(--gradient-secondary) r g b / 0.1) var(--tw-gradient-to-position) !important;
+}
+
+/* Replace all other accent colors when custom gradient is enabled */
+/* Green #10B981 */
+.custom-gradient [class*="bg-[#10B981]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#10b981]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+.custom-gradient [class*="text-[#10B981]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#10b981]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+.custom-gradient [class*="border-[#10B981]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="border-[#10b981]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    border-color: var(--accent-color) !important;
+}
+
+/* Purple #8B5CF6 */
+.custom-gradient [class*="bg-[#8B5CF6]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#8b5cf6]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+.custom-gradient [class*="text-[#8B5CF6]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#8b5cf6]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+/* Mint/Cyan #06B6D4 */
+.custom-gradient [class*="bg-[#06B6D4]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#06b6d4]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+.custom-gradient [class*="text-[#06B6D4]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#06b6d4]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+/* Yellow #F59E0B and #FFC850 */
+.custom-gradient [class*="bg-[#F59E0B]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#f59e0b]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#FFC850]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#ffc850]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+.custom-gradient [class*="text-[#F59E0B]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#f59e0b]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#FFC850]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#ffc850]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+/* Pink #EC4899 and #FF6FB5 */
+.custom-gradient [class*="bg-[#EC4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#ec4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#FF6FB5]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="bg-[#ff6fb5]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+.custom-gradient [class*="text-[#EC4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#ec4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#FF6FB5]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+.custom-gradient [class*="text-[#ff6fb5]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+[class*="hover:bg-[#1557"]:hover,
+[class*="hover:text-[#1557"]:hover,
+[class*="hover:border-[#1557"]:hover {
+    filter: brightness(0.85);
+}
+
+/* GLOBAL accent color replacement - works for ALL accent colors */
+/* Green #10B981 */
+[class*="bg-[#10B981]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#10b981]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+[class*="text-[#10B981]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#10b981]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+[class*="border-[#10B981]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#10b981]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    border-color: var(--accent-color) !important;
+}
+
+/* Purple #8B5CF6 */
+[class*="bg-[#8B5CF6]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#8b5cf6]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+[class*="text-[#8B5CF6]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#8b5cf6]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+[class*="border-[#8B5CF6]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#8b5cf6]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    border-color: var(--accent-color) !important;
+}
+
+/* Mint/Cyan #06B6D4 */
+[class*="bg-[#06B6D4]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#06b6d4]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+[class*="text-[#06B6D4]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#06b6d4]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+[class*="border-[#06B6D4]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#06b6d4]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    border-color: var(--accent-color) !important;
+}
+
+/* Yellow #F59E0B and #FFC850 */
+[class*="bg-[#F59E0B]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#f59e0b]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#FFC850]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#ffc850]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+[class*="text-[#F59E0B]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#f59e0b]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#FFC850]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#ffc850]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+[class*="border-[#F59E0B]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#f59e0b]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#FFC850]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#ffc850]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    border-color: var(--accent-color) !important;
+}
+
+/* Pink #EC4899 and #FF6FB5 */
+[class*="bg-[#EC4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#ec4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#FF6FB5]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="bg-[#ff6fb5]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    background-color: var(--accent-color) !important;
+}
+
+[class*="text-[#EC4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#ec4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#FF6FB5]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="text-[#ff6fb5]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    color: var(--accent-color) !important;
+}
+
+[class*="border-[#EC4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#ec4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#FF6FB5]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
+[class*="border-[#ff6fb5]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
+    border-color: var(--accent-color) !important;
+}
+
+/* Secondary color #8C7AE7 - replace globally with accent-secondary */
+[class*="bg-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *),
+[class*="bg-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *) {
+    background-color: var(--accent-secondary) !important;
+}
+
+[class*="text-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *),
+[class*="text-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *) {
+    color: var(--accent-secondary) !important;
+}
+
+[class*="border-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *),
+[class*="border-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *) {
+    border-color: var(--accent-secondary) !important;
+}
+
+[class*="from-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *),
+[class*="from-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *) {
+    --tw-gradient-from: var(--accent-secondary) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(from var(--accent-secondary) r g b / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+[class*="to-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *),
+[class*="to-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *) {
+    --tw-gradient-to: var(--accent-secondary) var(--tw-gradient-to-position) !important;
+}
+
+/* Smooth scrolling for dashboard */
+.dashboard-scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+}
+
+.dashboard-scroll-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.dashboard-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dashboard-scroll-container::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.3);
+    border-radius: 4px;
+}
+
+.dashboard-scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(156, 163, 175, 0.5);
+}
+
+/* Responsive font sizing for mobile */
+@media (max-width: 640px) {
+    :root {
+        --font-size: 14px;
+    }
+}
+
+/* Ensure touch targets are large enough on mobile */
+@media (max-width: 768px) {
+    button, a {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Accessibility: High Contrast Mode */
+.high-contrast {
+    --background: #000000;
+    --foreground: #FFFFFF;
+    --border: #FFFFFF;
+    --muted: #333333;
+    --muted-foreground: #CCCCCC;
+}
+
+.high-contrast button,
+.high-contrast a,
+.high-contrast input {
+    border: 2px solid currentColor !important;
+}
+
+.high-contrast {
+    filter: contrast(200%) !important;
+}
+
+.high-contrast * {
+    color: #FFFFFF !important;
+    background-color: #000000 !important;
+    border-color: #FFFFFF !important;
+}
+
+.high-contrast .bg-white,
+.high-contrast .bg-gray-50,
+.high-contrast .bg-gray-100 {
+    background-color: #000000 !important;
+}
+
+.high-contrast .text-gray-900,
+.high-contrast .text-gray-700,
+.high-contrast .text-gray-600,
+.high-contrast .text-gray-500 {
+    color: #FFFFFF !important;
+}
+
+.high-contrast button,
+.high-contrast a {
+    background-color: #1a1a1a !important;
+    border: 3px solid #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+.high-contrast .bg-\[\#1C6AFF\],
+.high-contrast .bg-\[\#8C7AE7\],
+.high-contrast .bg-\[\#98F1CF\],
+.high-contrast .bg-\[\#FBC24E\] {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+/* Accessibility: Reduced Motion */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* Accessibility: Large Cursor */
+.large-cursor,
+.large-cursor * {
+    cursor: default !important;
+    cursor: -webkit-zoom-in !important;
+    cursor: zoom-in !important;
+}
+
+.large-cursor button,
+.large-cursor a,
+.large-cursor input,
+.large-cursor textarea,
+.large-cursor select {
+    cursor: pointer !important;
+    cursor: -webkit-zoom-in !important;
+    cursor: zoom-in !important;
+}
+
+/* Make cursor visually larger by adding outline effect on hover */
+.large-cursor button:hover,
+.large-cursor a:hover,
+.large-cursor input:hover,
+.large-cursor textarea:hover,
+.large-cursor select:hover,
+.large-cursor [role="button"]:hover {
+    outline: 3px solid color-mix(in srgb, var(--accent-color) 50%, transparent) !important;
+    outline-offset: 2px !important;
+}
+
+/* Accessibility: Large Text */
+.large-text {
+    --base-font-size: 18px !important;
+    --text-scale: 1.25 !important;
+}
+
+.large-text h1 {
+    font-size: 2.5rem !important;
+}
+
+.large-text h2 {
+    font-size: 2rem !important;
+}
+
+.large-text h3 {
+    font-size: 1.75rem !important;
+}
+
+.large-text h4 {
+    font-size: 1.5rem !important;
+}
+
+.large-text p,
+.large-text span,
+.large-text div,
+.large-text button,
+.large-text input {
+    font-size: 1.125rem !important;
+    line-height: 1.75 !important;
+}
+
+/* Accessibility: Large Cursor - Enhanced Visual Feedback */
+.large-cursor {
+    cursor: crosshair !important;
+}
+
+.large-cursor * {
+    outline: 3px solid transparent;
+    outline-offset: 3px;
+    transition: outline-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.large-cursor button:hover,
+.large-cursor a:hover,
+.large-cursor [role="button"]:hover,
+.large-cursor input[type="button"]:hover,
+.large-cursor input[type="submit"]:hover,
+.large-cursor [tabindex]:not([tabindex="-1"]):hover {
+    outline-color: color-mix(in srgb, var(--accent-color) 60%, transparent) !important;
+    transform: scale(1.03) !important;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-color) 20%, transparent), 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.large-cursor input[type="text"]:hover,
+.large-cursor input[type="email"]:hover,
+.large-cursor input[type="password"]:hover,
+.large-cursor input[type="search"]:hover,
+.large-cursor input[type="number"]:hover,
+.large-cursor textarea:hover {
+    outline-color: color-mix(in srgb, var(--accent-color) 40%, transparent) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 15%, transparent) !important;
+}
+
+.large-cursor [contenteditable="true"]:hover {
+    outline-color: color-mix(in srgb, var(--accent-color) 40%, transparent) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 15%, transparent) !important;
+}
+
+.large-cursor button,
+.large-cursor a,
+.large-cursor [role="button"] {
+    cursor: pointer !important;
+    position: relative;
+}
+
+.large-cursor input,
+.large-cursor textarea {
+    cursor: text !important;
+}
+
+/* Make interactive elements more obvious */
+.large-cursor button:not(:disabled),
+.large-cursor a,
+.large-cursor [role="button"]:not([aria-disabled="true"]) {
+    position: relative;
+}
+
+.large-cursor button:not(:disabled)::after,
+.large-cursor a::after,
+.large-cursor [role="button"]:not([aria-disabled="true"])::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 2px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    transition: border-color 0.2s ease;
+}
+
+.large-cursor button:not(:disabled):hover::after,
+.large-cursor a:hover::after,
+.large-cursor [role="button"]:not([aria-disabled="true"]):hover::after {
+    border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
+}
+
+/* Accessibility: Enhanced Focus Indicators */
+.enhanced-focus *:focus,
+.enhanced-focus *:focus-visible {
+    outline: 4px solid var(--accent-color) !important;
+    outline-offset: 4px !important;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-color) 30%, transparent) !important;
+}
+
+.enhanced-focus button:focus,
+.enhanced-focus a:focus,
+.enhanced-focus input:focus,
+.enhanced-focus textarea:focus,
+.enhanced-focus select:focus,
+.enhanced-focus [role="button"]:focus,
+.enhanced-focus [tabindex]:focus {
+    outline: 4px solid var(--accent-color) !important;
+    outline-offset: 4px !important;
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent-color) 40%, transparent) !important;
+    transform: scale(1.02);
+    transition: transform 0.1s ease;
+}
+
+/* Accessibility: Color Blind Friendly */
+.color-blind-friendly {
+    /* Override accent colors with color-blind-friendly variants */
+    --accent-primary: #0066CC !important;
+    --accent-secondary: #9966FF !important;
+    --accent-color: #0066CC !important;
+    --colony-primary-blue: #0066CC !important;
+    --colony-secondary-violet: #9966FF !important;
+    --colony-aqua: #00CC99 !important;
+    --colony-accent-yellow: #FFCC00 !important;
+}
+
+/* Color Blind Friendly - Background Colors */
+.color-blind-friendly [class*="bg-[#1C6AFF]"],
+.color-blind-friendly [class*="bg-[#1c6aff]"],
+.color-blind-friendly [style*="background-color: #1C6AFF"],
+.color-blind-friendly [style*="background-color: #1c6aff"],
+.color-blind-friendly [style*="background:#1C6AFF"],
+.color-blind-friendly [style*="background:#1c6aff"] {
+    background-color: #0066CC !important;
+}
+
+.color-blind-friendly [class*="bg-[#8C7AE7]"],
+.color-blind-friendly [class*="bg-[#8c7ae7]"],
+.color-blind-friendly [style*="background-color: #8C7AE7"],
+.color-blind-friendly [style*="background-color: #8c7ae7"],
+.color-blind-friendly [style*="background:#8C7AE7"],
+.color-blind-friendly [style*="background:#8c7ae7"] {
+    background-color: #9966FF !important;
+}
+
+.color-blind-friendly [class*="bg-[#98F1CF]"],
+.color-blind-friendly [class*="bg-[#98f1cf]"],
+.color-blind-friendly [style*="background-color: #98F1CF"],
+.color-blind-friendly [style*="background-color: #98f1cf"],
+.color-blind-friendly [style*="background:#98F1CF"],
+.color-blind-friendly [style*="background:#98f1cf"] {
+    background-color: #00CC99 !important;
+}
+
+.color-blind-friendly [class*="bg-[#FBC24E]"],
+.color-blind-friendly [class*="bg-[#fbc24e]"],
+.color-blind-friendly [style*="background-color: #FBC24E"],
+.color-blind-friendly [style*="background-color: #fbc24e"],
+.color-blind-friendly [style*="background:#FBC24E"],
+.color-blind-friendly [style*="background:#fbc24e"] {
+    background-color: #FFCC00 !important;
+}
+
+/* Color Blind Friendly - Text Colors */
+.color-blind-friendly [class*="text-[#1C6AFF]"],
+.color-blind-friendly [class*="text-[#1c6aff]"],
+.color-blind-friendly [style*="color: #1C6AFF"],
+.color-blind-friendly [style*="color: #1c6aff"] {
+    color: #0066CC !important;
+}
+
+.color-blind-friendly [class*="text-[#8C7AE7]"],
+.color-blind-friendly [class*="text-[#8c7ae7]"],
+.color-blind-friendly [style*="color: #8C7AE7"],
+.color-blind-friendly [style*="color: #8c7ae7"] {
+    color: #9966FF !important;
+}
+
+.color-blind-friendly [class*="text-[#98F1CF]"],
+.color-blind-friendly [class*="text-[#98f1cf]"],
+.color-blind-friendly [style*="color: #98F1CF"],
+.color-blind-friendly [style*="color: #98f1cf"] {
+    color: #00CC99 !important;
+}
+
+.color-blind-friendly [class*="text-[#FBC24E]"],
+.color-blind-friendly [class*="text-[#fbc24e]"],
+.color-blind-friendly [style*="color: #FBC24E"],
+.color-blind-friendly [style*="color: #fbc24e"] {
+    color: #FFCC00 !important;
+}
+
+/* Color Blind Friendly - Border Colors */
+.color-blind-friendly [class*="border-[#1C6AFF]"],
+.color-blind-friendly [class*="border-[#1c6aff]"] {
+    border-color: #0066CC !important;
+}
+
+.color-blind-friendly [class*="border-[#8C7AE7]"],
+.color-blind-friendly [class*="border-[#8c7ae7]"] {
+    border-color: #9966FF !important;
+}
+
+.color-blind-friendly [class*="border-[#98F1CF]"],
+.color-blind-friendly [class*="border-[#98f1cf]"] {
+    border-color: #00CC99 !important;
+}
+
+.color-blind-friendly [class*="border-[#FBC24E]"],
+.color-blind-friendly [class*="border-[#fbc24e]"] {
+    border-color: #FFCC00 !important;
+}
+
+/* Color Blind Friendly - Ring Colors */
+.color-blind-friendly [class*="ring-[#1C6AFF]"],
+.color-blind-friendly [class*="ring-[#1c6aff]"] {
+    --tw-ring-color: #0066CC !important;
+}
+
+.color-blind-friendly [class*="ring-[#8C7AE7]"],
+.color-blind-friendly [class*="ring-[#8c7ae7]"] {
+    --tw-ring-color: #9966FF !important;
+}
+
+.color-blind-friendly [class*="ring-[#98F1CF]"],
+.color-blind-friendly [class*="ring-[#98f1cf]"] {
+    --tw-ring-color: #00CC99 !important;
+}
+
+.color-blind-friendly [class*="ring-[#FBC24E]"],
+.color-blind-friendly [class*="ring-[#fbc24e]"] {
+    --tw-ring-color: #FFCC00 !important;
+}
+
+/* Color Blind Friendly - Gradient Colors */
+.color-blind-friendly [class*="from-[#1C6AFF]"],
+.color-blind-friendly [class*="from-[#1c6aff]"] {
+    --tw-gradient-from: #0066CC var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgba(0, 102, 204, 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.color-blind-friendly [class*="to-[#1C6AFF]"],
+.color-blind-friendly [class*="to-[#1c6aff]"] {
+    --tw-gradient-to: #0066CC var(--tw-gradient-to-position) !important;
+}
+
+.color-blind-friendly [class*="from-[#8C7AE7]"],
+.color-blind-friendly [class*="from-[#8c7ae7]"] {
+    --tw-gradient-from: #9966FF var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgba(153, 102, 255, 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.color-blind-friendly [class*="to-[#8C7AE7]"],
+.color-blind-friendly [class*="to-[#8c7ae7]"] {
+    --tw-gradient-to: #9966FF var(--tw-gradient-to-position) !important;
+}
+
+.color-blind-friendly [class*="from-[#98F1CF]"],
+.color-blind-friendly [class*="from-[#98f1cf]"] {
+    --tw-gradient-from: #00CC99 var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgba(0, 204, 153, 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.color-blind-friendly [class*="to-[#98F1CF]"],
+.color-blind-friendly [class*="to-[#98f1cf]"] {
+    --tw-gradient-to: #00CC99 var(--tw-gradient-to-position) !important;
+}
+
+.color-blind-friendly [class*="from-[#FBC24E]"],
+.color-blind-friendly [class*="from-[#fbc24e]"] {
+    --tw-gradient-from: #FFCC00 var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgba(255, 204, 0, 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.color-blind-friendly [class*="to-[#FBC24E]"],
+.color-blind-friendly [class*="to-[#fbc24e]"] {
+    --tw-gradient-to: #FFCC00 var(--tw-gradient-to-position) !important;
+}
+
+/* Ensure gradient backgrounds are visible in color-blind-friendly mode */
+.color-blind-friendly .bg-gradient-to-br {
+    background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)) !important;
+}
+
+.color-blind-friendly .bg-gradient-to-r {
+    background-image: linear-gradient(to right, var(--tw-gradient-stops)) !important;
+}
+
+.color-blind-friendly .bg-gradient-to-l {
+    background-image: linear-gradient(to left, var(--tw-gradient-stops)) !important;
+}
+
+.color-blind-friendly .bg-gradient-to-t {
+    background-image: linear-gradient(to top, var(--tw-gradient-stops)) !important;
+}
+
+.color-blind-friendly .bg-gradient-to-b {
+    background-image: linear-gradient(to bottom, var(--tw-gradient-stops)) !important;
+}
+
+.color-blind-friendly .bg-gradient-to-tr {
+    background-image: linear-gradient(to top right, var(--tw-gradient-stops)) !important;
+}
+
+.color-blind-friendly .bg-gradient-to-tl {
+    background-image: linear-gradient(to top left, var(--tw-gradient-stops)) !important;
+}
+
+.color-blind-friendly .bg-gradient-to-bl {
+    background-image: linear-gradient(to bottom left, var(--tw-gradient-stops)) !important;
+}
+
+/* Ensure text/icons inside gradients have sufficient contrast in color-blind-friendly mode */
+.color-blind-friendly [class*="bg-gradient"] .text-white,
+.color-blind-friendly [class*="bg-gradient"] svg {
+    color: #111827 !important;
+    stroke: #111827 !important;
+    fill: none !important;
+    stroke-width: 2 !important;
+    text-shadow: none !important;
+}
+
+/* Dark mode: keep icons white on gradients */
+.dark.color-blind-friendly [class*="bg-gradient"] .text-white,
+.dark.color-blind-friendly [class*="bg-gradient"] svg {
+    color: white !important;
+    stroke: white !important;
+    fill: none !important;
+    stroke-width: 2 !important;
+}
+
+/* Color Blind Friendly - Add patterns to status colors */
+/* Exclude gradient elements from these patterns */
+.color-blind-friendly .bg-red-100:not([class*="gradient"]),
+.color-blind-friendly .bg-red-50:not([class*="gradient"]),
+.color-blind-friendly [class*="bg-red-"]:not([class*="gradient"]) {
+    border: 3px solid currentColor !important;
+    border-style: solid !important;
+    font-weight: 700 !important;
+}
+
+.color-blind-friendly .bg-yellow-100:not([class*="gradient"]),
+.color-blind-friendly .bg-yellow-50:not([class*="gradient"]),
+.color-blind-friendly [class*="bg-yellow-"]:not([class*="gradient"]) {
+    border: 3px dashed currentColor !important;
+    font-weight: 600 !important;
+}
+
+.color-blind-friendly .bg-green-100:not([class*="gradient"]),
+.color-blind-friendly .bg-green-50:not([class*="gradient"]),
+.color-blind-friendly [class*="bg-green-"]:not([class*="gradient"]) {
+    border: 3px dotted currentColor !important;
+    font-weight: 500 !important;
+}
+
+.color-blind-friendly .bg-purple-100:not([class*="gradient"]),
+.color-blind-friendly .bg-purple-50:not([class*="gradient"]),
+.color-blind-friendly .bg-purple-500:not([class*="gradient"]),
+.color-blind-friendly [class*="bg-purple-"]:not([class*="gradient"]):not([class*="purple-9"]) {
+    border: 3px double currentColor !important;
+    font-weight: 700 !important;
+    box-shadow: inset 0 0 0 1px currentColor !important;
+}
+
+.color-blind-friendly .bg-blue-100:not([class*="gradient"]),
+.color-blind-friendly .bg-blue-50:not([class*="gradient"]),
+.color-blind-friendly .bg-blue-500:not([class*="gradient"]),
+.color-blind-friendly [class*="bg-blue-"]:not([class*="gradient"]):not([class*="blue-9"]) {
+    border: 3px ridge currentColor !important;
+    font-weight: 600 !important;
+    background-image: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            currentColor 10px,
+            currentColor 11px
+    ) !important;
+    background-blend-mode: overlay !important;
+    opacity: 0.95 !important;
+}
+
+.color-blind-friendly .bg-orange-100:not([class*="gradient"]),
+.color-blind-friendly .bg-orange-50:not([class*="gradient"]),
+.color-blind-friendly .bg-orange-500:not([class*="gradient"]),
+.color-blind-friendly [class*="bg-orange-"]:not([class*="gradient"]):not([class*="orange-9"]) {
+    border: 3px groove currentColor !important;
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+    text-decoration-style: wavy !important;
+}
+
+/* Dark mode support for color-blind-friendly patterns */
+.dark .color-blind-friendly .bg-green-900 {
+    border: 3px dotted currentColor !important;
+    font-weight: 500 !important;
+}
+
+.dark .color-blind-friendly .bg-green-900::before {
+    content: "✓ ";
+    font-weight: bold;
+}
+
+/* Add text labels for better identification */
+.color-blind-friendly .bg-red-100:not([class*="gradient"])::before,
+.color-blind-friendly [class*="bg-red-100"]:not([class*="gradient"])::before {
+    content: "⚠️ ";
+    font-weight: bold;
+}
+
+.color-blind-friendly .bg-yellow-100:not([class*="gradient"])::before,
+.color-blind-friendly [class*="bg-yellow-100"]:not([class*="gradient"])::before {
+    content: "⚡ ";
+    font-weight: bold;
+}
+
+.color-blind-friendly .bg-green-100:not([class*="gradient"])::before,
+.color-blind-friendly [class*="bg-green-100"]:not([class*="gradient"])::before {
+    content: "✓ ";
+    font-weight: bold;
+}
+
+.color-blind-friendly .bg-purple-100:not([class*="gradient"])::before,
+.color-blind-friendly [class*="bg-purple-100"]:not([class*="gradient"])::before,
+.color-blind-friendly .bg-purple-50:not([class*="gradient"])::before,
+.color-blind-friendly [class*="bg-purple-50"]:not([class*="gradient"])::before {
+    content: "⭐ ";
+    font-weight: bold;
+}
+
+.color-blind-friendly .bg-blue-100:not([class*="gradient"])::before,
+.color-blind-friendly [class*="bg-blue-100"]:not([class*="gradient"])::before,
+.color-blind-friendly .bg-blue-50:not([class*="gradient"])::before,
+.color-blind-friendly [class*="bg-blue-50"]:not([class*="gradient"])::before {
+    content: "ℹ️ ";
+    font-weight: bold;
+}
+
+.color-blind-friendly .bg-orange-100:not([class*="gradient"])::before,
+.color-blind-friendly [class*="bg-orange-100"]:not([class*="gradient"])::before,
+.color-blind-friendly .bg-orange-50:not([class*="gradient"])::before,
+.color-blind-friendly [class*="bg-orange-50"]:not([class*="gradient"])::before {
+    content: "🔶 ";
+    font-weight: bold;
+}
+
+/* Dark mode support for purple/blue/orange in color-blind-friendly */
+.dark .color-blind-friendly .bg-purple-900 {
+    border: 3px double currentColor !important;
+    font-weight: 700 !important;
+}
+
+.dark .color-blind-friendly .bg-purple-900::before {
+    content: "⭐ ";
+    font-weight: bold;
+}
+
+.dark .color-blind-friendly .bg-blue-900 {
+    border: 3px ridge currentColor !important;
+    font-weight: 600 !important;
+}
+
+.dark .color-blind-friendly .bg-blue-900::before {
+    content: "ℹ️ ";
+    font-weight: bold;
+}
+
+.dark .color-blind-friendly .bg-orange-900 {
+    border: 3px groove currentColor !important;
+    font-weight: 600 !important;
+}
+
+.dark .color-blind-friendly .bg-orange-900::before {
+    content: "🔶 ";
+    font-weight: bold;
+}
+
+/* Add labels for solid color variants (500 series - dark backgrounds with white text) */
+.color-blind-friendly .bg-purple-500:not([class*="gradient"])::before,
+.color-blind-friendly .bg-purple-600:not([class*="gradient"])::before,
+.color-blind-friendly .bg-purple-700:not([class*="gradient"])::before {
+    content: "⭐ ";
+    font-weight: bold;
+    color: white;
+}
+
+.color-blind-friendly .bg-blue-500:not([class*="gradient"])::before,
+.color-blind-friendly .bg-blue-600:not([class*="gradient"])::before,
+.color-blind-friendly .bg-blue-700:not([class*="gradient"])::before {
+    content: "ℹ️ ";
+    font-weight: bold;
+    color: white;
+}
+
+.color-blind-friendly .bg-yellow-500:not([class*="gradient"])::before,
+.color-blind-friendly .bg-yellow-600:not([class*="gradient"])::before,
+.color-blind-friendly .bg-yellow-700:not([class*="gradient"])::before {
+    content: "⚡ ";
+    font-weight: bold;
+    color: white;
+}
+
+/* Accessibility: Disable Autoplay */
+.disable-autoplay video,
+.disable-autoplay audio {
+    autoplay: false !important;
+}
+
+.disable-autoplay video[autoplay],
+.disable-autoplay audio[autoplay] {
+    pointer-events: none;
+}
+
+/* Accessibility: Keyboard Shortcuts Overlay */
+.keyboard-shortcuts-overlay [data-shortcut]:hover::after {
+    content: attr(data-shortcut);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-bottom: 4px;
+}
+
+/* Accessibility: Sticky Keys Helper */
+.sticky-keys-helper {
+    /* Visual indicator when modifier keys are pressed */
+}
+
+.sticky-keys-helper::before {
+    content: '';
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    z-index: 10000;
+    display: none;
+}
+
+/* Color Vision Modes */
+
+/* Deuteranopia (Green-blind) - Greens appear as browns/yellows */
+.deuteranopia {
+    filter: saturate(0.7) hue-rotate(10deg) contrast(0.95) brightness(1.0) !important;
+    /* Update CSS variables for deuteranopia */
+    --accent-primary: #3D7FFF;
+    --accent-secondary: #7B8FE8;
+    --accent-color: #3D7FFF;
+}
+
+/* Prevent accent color swatches from being affected by color vision filters */
+.deuteranopia .accent-color-swatches,
+.deuteranopia .accent-color-swatches * {
+    filter: none !important;
+}
+
+.deuteranopia [class*="bg-[#98F1CF]"],
+.deuteranopia [class*="bg-[#98f1cf]"] {
+    background-color: #C9B896 !important; /* Mint green → Tan/Beige */
+}
+
+.deuteranopia [class*="bg-[#1C6AFF]"],
+.deuteranopia [class*="bg-[#1c6aff]"] {
+    background-color: #3D7FFF !important; /* Blue stays blue */
+}
+
+.deuteranopia [class*="bg-[#FBC24E]"],
+.deuteranopia [class*="bg-[#fbc24e]"] {
+    background-color: #FFD966 !important; /* Yellow stays yellow */
+}
+
+.deuteranopia [class*="bg-[#8C7AE7]"],
+.deuteranopia [class*="bg-[#8c7ae7]"] {
+    background-color: #7B8FE8 !important; /* Purple → Blue-purple */
+}
+
+.deuteranopia [class*="text-[#98F1CF]"],
+.deuteranopia [class*="text-[#98f1cf]"] {
+    color: #C9B896 !important;
+}
+
+.deuteranopia [class*="text-[#1C6AFF]"],
+.deuteranopia [class*="text-[#1c6aff]"] {
+    color: #3D7FFF !important;
+}
+
+.deuteranopia [class*="text-[#FBC24E]"],
+.deuteranopia [class*="text-[#fbc24e]"] {
+    color: #FFD966 !important;
+}
+
+.deuteranopia [class*="text-[#8C7AE7]"],
+.deuteranopia [class*="text-[#8c7ae7]"] {
+    color: #7B8FE8 !important;
+}
+
+.deuteranopia [class*="border-[#98F1CF]"],
+.deuteranopia [class*="border-[#98f1cf]"] {
+    border-color: #C9B896 !important;
+}
+
+.deuteranopia [class*="border-[#1C6AFF]"],
+.deuteranopia [class*="border-[#1c6aff]"] {
+    border-color: #3D7FFF !important;
+}
+
+.deuteranopia [class*="border-[#FBC24E]"],
+.deuteranopia [class*="border-[#fbc24e]"] {
+    border-color: #FFD966 !important;
+}
+
+.deuteranopia [class*="border-[#8C7AE7]"],
+.deuteranopia [class*="border-[#8c7ae7]"] {
+    border-color: #7B8FE8 !important;
+}
+
+/* SVG color transformations for deuteranopia */
+.deuteranopia [stroke="#98F1CF"] { stroke: #C9B896 !important; }
+.deuteranopia [stroke="#98f1cf"] { stroke: #C9B896 !important; }
+.deuteranopia [stroke="#1C6AFF"] { stroke: #3D7FFF !important; }
+.deuteranopia [stroke="#1c6aff"] { stroke: #3D7FFF !important; }
+.deuteranopia [stroke="#FBC24E"] { stroke: #FFD966 !important; }
+.deuteranopia [stroke="#fbc24e"] { stroke: #FFD966 !important; }
+.deuteranopia [stroke="#8C7AE7"] { stroke: #7B8FE8 !important; }
+.deuteranopia [stroke="#8c7ae7"] { stroke: #7B8FE8 !important; }
+
+.deuteranopia [fill="#98F1CF"] { fill: #C9B896 !important; }
+.deuteranopia [fill="#98f1cf"] { fill: #C9B896 !important; }
+.deuteranopia [fill="#1C6AFF"] { fill: #3D7FFF !important; }
+.deuteranopia [fill="#1c6aff"] { fill: #3D7FFF !important; }
+.deuteranopia [fill="#FBC24E"] { fill: #FFD966 !important; }
+.deuteranopia [fill="#fbc24e"] { fill: #FFD966 !important; }
+.deuteranopia [fill="#8C7AE7"] { fill: #7B8FE8 !important; }
+.deuteranopia [fill="#8c7ae7"] { fill: #7B8FE8 !important; }
+
+.deuteranopia stop[stop-color="#98F1CF"] { stop-color: #C9B896 !important; }
+.deuteranopia stop[stop-color="#98f1cf"] { stop-color: #C9B896 !important; }
+.deuteranopia stop[stop-color="#1C6AFF"] { stop-color: #3D7FFF !important; }
+.deuteranopia stop[stop-color="#1c6aff"] { stop-color: #3D7FFF !important; }
+.deuteranopia stop[stop-color="#FBC24E"] { stop-color: #FFD966 !important; }
+.deuteranopia stop[stop-color="#fbc24e"] { stop-color: #FFD966 !important; }
+.deuteranopia stop[stop-color="#8C7AE7"] { stop-color: #7B8FE8 !important; }
+.deuteranopia stop[stop-color="#8c7ae7"] { stop-color: #7B8FE8 !important; }
+
+/* Green colors - convert to blue/yellow tones for deuteranopia */
+.deuteranopia .bg-green-50 {
+    background-color: #FEF9E7 !important;
+}
+
+.deuteranopia .bg-green-100 {
+    background-color: #FCF3CF !important;
+}
+
+.deuteranopia .bg-green-200 {
+    background-color: #F9E79F !important;
+}
+
+.deuteranopia .bg-green-300 {
+    background-color: #F7DC6F !important;
+}
+
+.deuteranopia .bg-green-400 {
+    background-color: #F4D03F !important;
+}
+
+.deuteranopia .bg-green-500 {
+    background-color: #F1C40F !important;
+}
+
+.deuteranopia .bg-green-600 {
+    background-color: #D4AC0D !important;
+}
+
+.deuteranopia .bg-green-700 {
+    background-color: #B7950B !important;
+}
+
+.deuteranopia .text-green-400 {
+    color: #F4D03F !important;
+}
+
+.deuteranopia .text-green-500 {
+    color: #F1C40F !important;
+}
+
+.deuteranopia .text-green-600 {
+    color: #D4AC0D !important;
+}
+
+.deuteranopia .text-green-700 {
+    color: #B7950B !important;
+}
+
+.deuteranopia .border-green-500 {
+    border-color: #F1C40F !important;
+}
+
+.deuteranopia .border-green-600 {
+    border-color: #D4AC0D !important;
+}
+
+/* Red colors - adjust for deuteranopia */
+.deuteranopia .bg-red-50 {
+    background-color: #FEF5E7 !important;
+}
+
+.deuteranopia .bg-red-100 {
+    background-color: #FDEBD0 !important;
+}
+
+.deuteranopia .bg-red-200 {
+    background-color: #FAD7A0 !important;
+}
+
+.deuteranopia .bg-red-300 {
+    background-color: #F8C471 !important;
+}
+
+.deuteranopia .bg-red-400 {
+    background-color: #F5B041 !important;
+}
+
+.deuteranopia .bg-red-500 {
+    background-color: #F39C12 !important;
+}
+
+.deuteranopia .bg-red-600 {
+    background-color: #E67E22 !important;
+}
+
+.deuteranopia .bg-red-700 {
+    background-color: #CA6F1E !important;
+}
+
+.deuteranopia .text-red-500 {
+    color: #F39C12 !important;
+}
+
+.deuteranopia .text-red-600 {
+    color: #E67E22 !important;
+}
+
+.deuteranopia .text-red-700 {
+    color: #CA6F1E !important;
+}
+
+.deuteranopia .border-red-500 {
+    border-color: #F39C12 !important;
+}
+
+.deuteranopia .border-red-600 {
+    border-color: #E67E22 !important;
+}
+
+/* Blue colors - enhance for deuteranopia */
+.deuteranopia .bg-blue-50 {
+    background-color: #EBF5FB !important;
+}
+
+.deuteranopia .bg-blue-100 {
+    background-color: #D6EAF8 !important;
+}
+
+.deuteranopia .bg-blue-200 {
+    background-color: #AED6F1 !important;
+}
+
+.deuteranopia .bg-blue-300 {
+    background-color: #85C1E9 !important;
+}
+
+.deuteranopia .bg-blue-400 {
+    background-color: #5DADE2 !important;
+}
+
+.deuteranopia .bg-blue-500 {
+    background-color: #3498DB !important;
+}
+
+.deuteranopia .bg-blue-600 {
+    background-color: #2E86C1 !important;
+}
+
+.deuteranopia .text-blue-500 {
+    color: #3498DB !important;
+}
+
+.deuteranopia .text-blue-600 {
+    color: #2E86C1 !important;
+}
+
+/* Yellow/Orange colors for deuteranopia */
+.deuteranopia .bg-yellow-50 {
+    background-color: #FFFBEA !important;
+}
+
+.deuteranopia .bg-yellow-100 {
+    background-color: #FFF3C4 !important;
+}
+
+.deuteranopia .bg-yellow-200 {
+    background-color: #FCE588 !important;
+}
+
+.deuteranopia .bg-yellow-300 {
+    background-color: #FADB5F !important;
+}
+
+.deuteranopia .bg-yellow-400 {
+    background-color: #F7C948 !important;
+}
+
+.deuteranopia .bg-yellow-500 {
+    background-color: #F0B429 !important;
+}
+
+.deuteranopia .text-yellow-500 {
+    color: #F0B429 !important;
+}
+
+.deuteranopia .bg-orange-100 {
+    background-color: #FFF5E1 !important;
+}
+
+.deuteranopia .bg-orange-200 {
+    background-color: #FFE4B3 !important;
+}
+
+.deuteranopia .bg-orange-300 {
+    background-color: #FFD180 !important;
+}
+
+.deuteranopia .bg-orange-400 {
+    background-color: #FFBB4D !important;
+}
+
+.deuteranopia .bg-orange-500 {
+    background-color: #FF9800 !important;
+}
+
+.deuteranopia .bg-orange-600 {
+    background-color: #FB8C00 !important;
+}
+
+.deuteranopia .text-orange-500 {
+    color: #FF9800 !important;
+}
+
+.deuteranopia .text-orange-600 {
+    color: #FB8C00 !important;
+}
+
+/* Purple colors for deuteranopia */
+.deuteranopia .bg-purple-50 {
+    background-color: #F4E8FB !important;
+}
+
+.deuteranopia .bg-purple-100 {
+    background-color: #E8D1F7 !important;
+}
+
+.deuteranopia .bg-purple-500 {
+    background-color: #9B59B6 !important;
+}
+
+.deuteranopia .bg-purple-600 {
+    background-color: #8E44AD !important;
+}
+
+.deuteranopia .bg-purple-900 {
+    background-color: #5B2C6F !important;
+}
+
+.deuteranopia .text-purple-400 {
+    color: #AF7AC5 !important;
+}
+
+.deuteranopia .text-purple-500 {
+    color: #9B59B6 !important;
+}
+
+.deuteranopia .text-purple-600 {
+    color: #8E44AD !important;
+}
+
+.deuteranopia .text-purple-700 {
+    color: #7D3C98 !important;
+}
+
+/* Emerald/Teal colors for deuteranopia */
+.deuteranopia .bg-emerald-500 {
+    background-color: #48C9B0 !important;
+}
+
+.deuteranopia .bg-emerald-600 {
+    background-color: #1ABC9C !important;
+}
+
+.deuteranopia .bg-teal-500 {
+    background-color: #17A2B8 !important;
+}
+
+.deuteranopia .text-emerald-500 {
+    color: #48C9B0 !important;
+}
+
+.deuteranopia .text-teal-500 {
+    color: #17A2B8 !important;
+}
+
+/* Rose/Pink for deuteranopia */
+.deuteranopia .bg-rose-100 {
+    background-color: #FADBD8 !important;
+}
+
+.deuteranopia .bg-rose-200 {
+    background-color: #F5B7B1 !important;
+}
+
+.deuteranopia .bg-rose-500 {
+    background-color: #E74C3C !important;
+}
+
+.deuteranopia .bg-rose-600 {
+    background-color: #CB4335 !important;
+}
+
+.deuteranopia .text-rose-500 {
+    color: #E74C3C !important;
+}
+
+.deuteranopia .text-rose-600 {
+    color: #CB4335 !important;
+}
+
+/* Gradient adjustments for deuteranopia */
+.deuteranopia [class*="from-green"] {
+    --tw-gradient-from: #F1C40F !important;
+}
+
+.deuteranopia [class*="to-green"] {
+    --tw-gradient-to: #F1C40F !important;
+}
+
+.deuteranopia [class*="from-red"] {
+    --tw-gradient-from: #F39C12 !important;
+}
+
+.deuteranopia [class*="to-red"] {
+    --tw-gradient-to: #F39C12 !important;
+}
+
+.deuteranopia [class*="from-blue"] {
+    --tw-gradient-from: #3498DB !important;
+}
+
+.deuteranopia [class*="to-blue"] {
+    --tw-gradient-to: #3498DB !important;
+}
+
+/* Status colors for deuteranopia */
+.deuteranopia .bg-destructive {
+    background-color: #E67E22 !important;
+}
+
+.deuteranopia .text-destructive {
+    color: #E67E22 !important;
+}
+
+/* Inline styles for deuteranopia */
+.deuteranopia [style*="background-color: rgb(220, 38, 38)"],
+.deuteranopia [style*="background-color: #DC2626"] {
+    background-color: #F39C12 !important;
+}
+
+.deuteranopia [style*="background-color: rgb(16, 185, 129)"],
+.deuteranopia [style*="background-color: #10B981"] {
+    background-color: #F1C40F !important;
+}
+
+.deuteranopia [style*="background-color: #EF4444"],
+.deuteranopia [style*="background-color: #ef4444"] {
+    background-color: #F39C12 !important;
+}
+
+.deuteranopia [style*="background-color: #22C55E"],
+.deuteranopia [style*="background-color: #22c55e"] {
+    background-color: #F1C40F !important;
+}
+
+.deuteranopia [style*="color: rgb(220, 38, 38)"],
+.deuteranopia [style*="color: #DC2626"] {
+    color: #F39C12 !important;
+}
+
+.deuteranopia [style*="color: rgb(16, 185, 129)"],
+.deuteranopia [style*="color: #10B981"] {
+    color: #F1C40F !important;
+}
+
+.deuteranopia [class*="bg-[#00D37F]"],
+.deuteranopia [class*="bg-[#00d37f]"] {
+    background-color: #F4D03F !important;
+}
+
+.deuteranopia [class*="bg-[#10B981]"],
+.deuteranopia [class*="bg-[#10b981]"] {
+    background-color: #F1C40F !important;
+}
+
+.deuteranopia [class*="text-[#00D37F]"],
+.deuteranopia [class*="text-[#00d37f]"] {
+    color: #F4D03F !important;
+}
+
+.deuteranopia [class*="text-[#10B981]"],
+.deuteranopia [class*="text-[#10b981]"] {
+    color: #F1C40F !important;
+}
+
+/* Protanopia (Red-blind) - Reds appear darker and brownish */
+.protanopia {
+    filter: saturate(0.8) hue-rotate(-5deg) contrast(0.9) brightness(0.95) !important;
+    /* Update CSS variables for protanopia */
+    --accent-primary: #2E73FF;
+    --accent-secondary: #6B7BE6;
+    --accent-color: #2E73FF;
+}
+
+/* Prevent accent color swatches from being affected by color vision filters */
+.protanopia .accent-color-swatches,
+.protanopia .accent-color-swatches * {
+    filter: none !important;
+}
+
+.protanopia [class*="bg-[#FBC24E]"],
+.protanopia [class*="bg-[#fbc24e]"] {
+    background-color: #E8C76A !important; /* Yellow appears slightly muted */
+}
+
+.protanopia [class*="bg-[#8C7AE7]"],
+.protanopia [class*="bg-[#8c7ae7]"] {
+    background-color: #6B7BE6 !important; /* Purple → More blue */
+}
+
+.protanopia [class*="bg-[#1C6AFF]"],
+.protanopia [class*="bg-[#1c6aff]"] {
+    background-color: #2E73FF !important; /* Blue stays mostly blue */
+}
+
+.protanopia [class*="bg-[#98F1CF]"],
+.protanopia [class*="bg-[#98f1cf]"] {
+    background-color: #B8D9C4 !important; /* Mint green → Pale green/tan */
+}
+
+.protanopia [class*="text-[#FBC24E]"],
+.protanopia [class*="text-[#fbc24e]"] {
+    color: #E8C76A !important;
+}
+
+.protanopia [class*="text-[#8C7AE7]"],
+.protanopia [class*="text-[#8c7ae7]"] {
+    color: #6B7BE6 !important;
+}
+
+.protanopia [class*="text-[#1C6AFF]"],
+.protanopia [class*="text-[#1c6aff]"] {
+    color: #2E73FF !important;
+}
+
+.protanopia [class*="text-[#98F1CF]"],
+.protanopia [class*="text-[#98f1cf]"] {
+    color: #B8D9C4 !important;
+}
+
+.protanopia [class*="border-[#FBC24E]"],
+.protanopia [class*="border-[#fbc24e]"] {
+    border-color: #E8C76A !important;
+}
+
+.protanopia [class*="border-[#8C7AE7]"],
+.protanopia [class*="border-[#8c7ae7]"] {
+    border-color: #6B7BE6 !important;
+}
+
+.protanopia [class*="border-[#1C6AFF]"],
+.protanopia [class*="border-[#1c6aff]"] {
+    border-color: #2E73FF !important;
+}
+
+.protanopia [class*="border-[#98F1CF]"],
+.protanopia [class*="border-[#98f1cf]"] {
+    border-color: #B8D9C4 !important;
+}
+
+/* SVG color transformations for protanopia */
+.protanopia [stroke="#98F1CF"] { stroke: #B8D9C4 !important; }
+.protanopia [stroke="#98f1cf"] { stroke: #B8D9C4 !important; }
+.protanopia [stroke="#1C6AFF"] { stroke: #2E73FF !important; }
+.protanopia [stroke="#1c6aff"] { stroke: #2E73FF !important; }
+.protanopia [stroke="#FBC24E"] { stroke: #E8C76A !important; }
+.protanopia [stroke="#fbc24e"] { stroke: #E8C76A !important; }
+.protanopia [stroke="#8C7AE7"] { stroke: #6B7BE6 !important; }
+.protanopia [stroke="#8c7ae7"] { stroke: #6B7BE6 !important; }
+
+.protanopia [fill="#98F1CF"] { fill: #B8D9C4 !important; }
+.protanopia [fill="#98f1cf"] { fill: #B8D9C4 !important; }
+.protanopia [fill="#1C6AFF"] { fill: #2E73FF !important; }
+.protanopia [fill="#1c6aff"] { fill: #2E73FF !important; }
+.protanopia [fill="#FBC24E"] { fill: #E8C76A !important; }
+.protanopia [fill="#fbc24e"] { fill: #E8C76A !important; }
+.protanopia [fill="#8C7AE7"] { fill: #6B7BE6 !important; }
+.protanopia [fill="#8c7ae7"] { fill: #6B7BE6 !important; }
+
+.protanopia stop[stop-color="#98F1CF"] { stop-color: #B8D9C4 !important; }
+.protanopia stop[stop-color="#98f1cf"] { stop-color: #B8D9C4 !important; }
+.protanopia stop[stop-color="#1C6AFF"] { stop-color: #2E73FF !important; }
+.protanopia stop[stop-color="#1c6aff"] { stop-color: #2E73FF !important; }
+.protanopia stop[stop-color="#FBC24E"] { stop-color: #E8C76A !important; }
+.protanopia stop[stop-color="#fbc24e"] { stop-color: #E8C76A !important; }
+.protanopia stop[stop-color="#8C7AE7"] { stop-color: #6B7BE6 !important; }
+.protanopia stop[stop-color="#8c7ae7"] { stop-color: #6B7BE6 !important; }
+
+/* Apply to Tailwind standard colors for protanopia */
+.protanopia .bg-red-50,
+.protanopia .bg-red-100,
+.protanopia .bg-red-200,
+.protanopia .bg-red-300,
+.protanopia .bg-red-400,
+.protanopia .bg-red-500,
+.protanopia .bg-red-600 {
+    filter: brightness(1.1) saturate(0.5) hue-rotate(-30deg);
+}
+
+.protanopia .text-red-500,
+.protanopia .text-red-600,
+.protanopia .text-red-700 {
+    filter: brightness(1.0) saturate(0.6) hue-rotate(-30deg);
+}
+
+/* Red colors - convert to yellow-brown tones */
+.protanopia .bg-red-500 {
+    background-color: #D4A574 !important;
+}
+
+.protanopia .bg-red-600 {
+    background-color: #B8926A !important;
+}
+
+.protanopia .bg-red-700 {
+    background-color: #9C7F5F !important;
+}
+
+.protanopia .text-red-500 {
+    color: #D4A574 !important;
+}
+
+.protanopia .text-red-600 {
+    color: #B8926A !important;
+}
+
+.protanopia .text-red-700 {
+    color: #9C7F5F !important;
+}
+
+.protanopia .border-red-500 {
+    border-color: #D4A574 !important;
+}
+
+.protanopia .border-red-600 {
+    border-color: #B8926A !important;
+}
+
+/* Green colors - shift to blue-cyan tones (easier to distinguish from reds) */
+.protanopia .bg-green-50 {
+    background-color: #E0F2FE !important;
+}
+
+.protanopia .bg-green-100 {
+    background-color: #BAE6FD !important;
+}
+
+.protanopia .bg-green-200 {
+    background-color: #7DD3FC !important;
+}
+
+.protanopia .bg-green-300 {
+    background-color: #38BDF8 !important;
+}
+
+.protanopia .bg-green-400 {
+    background-color: #0EA5E9 !important;
+}
+
+.protanopia .bg-green-500 {
+    background-color: #0284C7 !important;
+}
+
+.protanopia .bg-green-600 {
+    background-color: #0369A1 !important;
+}
+
+.protanopia .text-green-400 {
+    color: #0EA5E9 !important;
+}
+
+.protanopia .text-green-500 {
+    color: #0284C7 !important;
+}
+
+.protanopia .text-green-600 {
+    color: #0369A1 !important;
+}
+
+.protanopia .text-green-700 {
+    color: #075985 !important;
+}
+
+.protanopia .border-green-500 {
+    border-color: #0284C7 !important;
+}
+
+.protanopia .border-green-600 {
+    border-color: #0369A1 !important;
+}
+
+/* Orange colors - convert to gold/yellow tones */
+.protanopia .bg-orange-50 {
+    background-color: #FFFBEB !important;
+}
+
+.protanopia .bg-orange-100 {
+    background-color: #FEF3C7 !important;
+}
+
+.protanopia .bg-orange-200 {
+    background-color: #FDE68A !important;
+}
+
+.protanopia .bg-orange-300 {
+    background-color: #FCD34D !important;
+}
+
+.protanopia .bg-orange-400 {
+    background-color: #FBBF24 !important;
+}
+
+.protanopia .bg-orange-500 {
+    background-color: #F59E0B !important;
+}
+
+.protanopia .bg-orange-600 {
+    background-color: #D97706 !important;
+}
+
+.protanopia .bg-orange-900 {
+    background-color: #78350F !important;
+}
+
+.protanopia .text-orange-400 {
+    color: #FB923C !important;
+}
+
+.protanopia .text-orange-500 {
+    color: #F59E0B !important;
+}
+
+.protanopia .text-orange-600 {
+    color: #D97706 !important;
+}
+
+.protanopia .text-orange-700 {
+    color: #C2410C !important;
+}
+
+/* Rose/Pink colors - convert to purple tones */
+.protanopia .bg-rose-100 {
+    background-color: #E9D5FF !important;
+}
+
+.protanopia .bg-rose-200 {
+    background-color: #D8B4FE !important;
+}
+
+.protanopia .bg-rose-500 {
+    background-color: #A855F7 !important;
+}
+
+.protanopia .bg-rose-600 {
+    background-color: #9333EA !important;
+}
+
+.protanopia .text-rose-500 {
+    color: #A855F7 !important;
+}
+
+.protanopia .text-rose-600 {
+    color: #9333EA !important;
+}
+
+/* Purple colors - keep but adjust slightly for better visibility */
+.protanopia .bg-purple-50 {
+    background-color: #FAF5FF !important;
+}
+
+.protanopia .bg-purple-100 {
+    background-color: #E9D5FF !important;
+}
+
+.protanopia .bg-purple-500 {
+    background-color: #9F7AEA !important;
+}
+
+.protanopia .bg-purple-600 {
+    background-color: #805AD5 !important;
+}
+
+.protanopia .bg-purple-900 {
+    background-color: #581C87 !important;
+}
+
+.protanopia .text-purple-400 {
+    color: #A78BFA !important;
+}
+
+.protanopia .text-purple-500 {
+    color: #9F7AEA !important;
+}
+
+.protanopia .text-purple-600 {
+    color: #805AD5 !important;
+}
+
+.protanopia .text-purple-700 {
+    color: #6D28D9 !important;
+}
+
+/* Blue colors - keep as is (protanopia doesn't affect blue perception) */
+.protanopia .bg-blue-50 {
+    background-color: #EFF6FF !important;
+}
+
+.protanopia .bg-blue-100 {
+    background-color: #DBEAFE !important;
+}
+
+.protanopia .bg-blue-500 {
+    background-color: #3B82F6 !important;
+}
+
+.protanopia .bg-blue-600 {
+    background-color: #2563EB !important;
+}
+
+.protanopia .bg-blue-900 {
+    background-color: #1E3A8A !important;
+}
+
+.protanopia .text-blue-400 {
+    color: #60A5FA !important;
+}
+
+.protanopia .text-blue-600 {
+    color: #2563EB !important;
+}
+
+/* Emerald/Teal - convert to cyan */
+.protanopia .bg-emerald-500 {
+    background-color: #06B6D4 !important;
+}
+
+.protanopia .bg-emerald-600 {
+    background-color: #0891B2 !important;
+}
+
+.protanopia .bg-teal-500 {
+    background-color: #14B8A6 !important;
+}
+
+.protanopia .text-emerald-500 {
+    color: #06B6D4 !important;
+}
+
+.protanopia .text-teal-500 {
+    color: #14B8A6 !important;
+}
+
+/* Gradient adjustments for protanopia */
+.protanopia [class*="from-red"] {
+    --tw-gradient-from: #D4A574 !important;
+}
+
+.protanopia [class*="to-red"] {
+    --tw-gradient-to: #D4A574 !important;
+}
+
+.protanopia [class*="from-green"] {
+    --tw-gradient-from: #0284C7 !important;
+}
+
+.protanopia [class*="to-green"] {
+    --tw-gradient-to: #0284C7 !important;
+}
+
+.protanopia [class*="from-orange"] {
+    --tw-gradient-from: #F59E0B !important;
+}
+
+.protanopia [class*="to-orange"] {
+    --tw-gradient-to: #F59E0B !important;
+}
+
+/* Status colors for protanopia */
+.protanopia .bg-destructive {
+    background-color: #D4A574 !important;
+}
+
+.protanopia .text-destructive {
+    color: #D4A574 !important;
+}
+
+/* Specific UI element adjustments */
+.protanopia [style*="background-color: rgb(220, 38, 38)"],
+.protanopia [style*="background-color: #DC2626"] {
+    background-color: #D4A574 !important;
+}
+
+.protanopia [style*="background-color: rgb(16, 185, 129)"],
+.protanopia [style*="background-color: #10B981"] {
+    background-color: #0284C7 !important;
+}
+
+.protanopia [style*="color: rgb(220, 38, 38)"],
+.protanopia [style*="color: #DC2626"] {
+    color: #D4A574 !important;
+}
+
+.protanopia [style*="color: rgb(16, 185, 129)"],
+.protanopia [style*="color: #10B981"] {
+    color: #0284C7 !important;
+}
+
+/* Additional hex color codes for red/green throughout the site */
+.protanopia [style*="background-color: #EF4444"],
+.protanopia [style*="background-color: #ef4444"] {
+    background-color: #D4A574 !important;
+}
+
+.protanopia [style*="background-color: #22C55E"],
+.protanopia [style*="background-color: #22c55e"] {
+    background-color: #0284C7 !important;
+}
+
+.protanopia [style*="background-color: #00D37F"],
+.protanopia [style*="background-color: #00d37f"] {
+    background-color: #0EA5E9 !important;
+}
+
+.protanopia [class*="bg-[#00D37F]"],
+.protanopia [class*="bg-[#00d37f]"] {
+    background-color: #0EA5E9 !important;
+}
+
+.protanopia [class*="bg-[#10B981]"],
+.protanopia [class*="bg-[#10b981]"] {
+    background-color: #0284C7 !important;
+}
+
+.protanopia [class*="text-[#00D37F]"],
+.protanopia [class*="text-[#00d37f]"] {
+    color: #0EA5E9 !important;
+}
+
+.protanopia [class*="text-[#10B981]"],
+.protanopia [class*="text-[#10b981]"] {
+    color: #0284C7 !important;
+}
+
+/* Tritanopia (Blue-blind) - Blues appear cyan/teal */
+.tritanopia {
+    filter: saturate(0.85) hue-rotate(-15deg) contrast(0.95) brightness(1.05) !important;
+    /* Update CSS variables for tritanopia */
+    --accent-primary: #40D4C8;
+    --accent-secondary: #E88FCF;
+    --accent-color: #40D4C8;
+}
+
+/* Prevent accent color swatches from being affected by color vision filters */
+.tritanopia .accent-color-swatches,
+.tritanopia .accent-color-swatches * {
+    filter: none !important;
+}
+
+.tritanopia [class*="bg-[#1C6AFF]"],
+.tritanopia [class*="bg-[#1c6aff]"] {
+    background-color: #40D4C8 !important; /* Blue → Cyan/Teal */
+}
+
+.tritanopia [class*="bg-[#98F1CF]"],
+.tritanopia [class*="bg-[#98f1cf]"] {
+    background-color: #7FE8D8 !important; /* Mint green → Bright cyan */
+}
+
+.tritanopia [class*="bg-[#8C7AE7]"],
+.tritanopia [class*="bg-[#8c7ae7]"] {
+    background-color: #E88FCF !important; /* Purple → Pink */
+}
+
+.tritanopia [class*="bg-[#FBC24E]"],
+.tritanopia [class*="bg-[#fbc24e]"] {
+    background-color: #FFB8C8 !important; /* Yellow → Light pink */
+}
+
+.tritanopia [class*="text-[#1C6AFF]"],
+.tritanopia [class*="text-[#1c6aff]"] {
+    color: #40D4C8 !important;
+}
+
+.tritanopia [class*="text-[#98F1CF]"],
+.tritanopia [class*="text-[#98f1cf]"] {
+    color: #7FE8D8 !important;
+}
+
+.tritanopia [class*="text-[#8C7AE7]"],
+.tritanopia [class*="text-[#8c7ae7]"] {
+    color: #E88FCF !important;
+}
+
+.tritanopia [class*="text-[#FBC24E]"],
+.tritanopia [class*="text-[#fbc24e]"] {
+    color: #FFB8C8 !important;
+}
+
+.tritanopia [class*="border-[#1C6AFF]"],
+.tritanopia [class*="border-[#1c6aff]"] {
+    border-color: #40D4C8 !important;
+}
+
+.tritanopia [class*="border-[#98F1CF]"],
+.tritanopia [class*="border-[#98f1cf]"] {
+    border-color: #7FE8D8 !important;
+}
+
+.tritanopia [class*="border-[#8C7AE7]"],
+.tritanopia [class*="border-[#8c7ae7]"] {
+    border-color: #E88FCF !important;
+}
+
+.tritanopia [class*="border-[#FBC24E]"],
+.tritanopia [class*="border-[#fbc24e]"] {
+    border-color: #FFB8C8 !important;
+}
+
+/* SVG color transformations for tritanopia */
+.tritanopia [stroke="#98F1CF"] { stroke: #7FE8D8 !important; }
+.tritanopia [stroke="#98f1cf"] { stroke: #7FE8D8 !important; }
+.tritanopia [stroke="#1C6AFF"] { stroke: #40D4C8 !important; }
+.tritanopia [stroke="#1c6aff"] { stroke: #40D4C8 !important; }
+.tritanopia [stroke="#FBC24E"] { stroke: #FFB8C8 !important; }
+.tritanopia [stroke="#fbc24e"] { stroke: #FFB8C8 !important; }
+.tritanopia [stroke="#8C7AE7"] { stroke: #E88FCF !important; }
+.tritanopia [stroke="#8c7ae7"] { stroke: #E88FCF !important; }
+
+.tritanopia [fill="#98F1CF"] { fill: #7FE8D8 !important; }
+.tritanopia [fill="#98f1cf"] { fill: #7FE8D8 !important; }
+.tritanopia [fill="#1C6AFF"] { fill: #40D4C8 !important; }
+.tritanopia [fill="#1c6aff"] { fill: #40D4C8 !important; }
+.tritanopia [fill="#FBC24E"] { fill: #FFB8C8 !important; }
+.tritanopia [fill="#fbc24e"] { fill: #FFB8C8 !important; }
+.tritanopia [fill="#8C7AE7"] { fill: #E88FCF !important; }
+.tritanopia [fill="#8c7ae7"] { fill: #E88FCF !important; }
+
+.tritanopia stop[stop-color="#98F1CF"] { stop-color: #7FE8D8 !important; }
+.tritanopia stop[stop-color="#98f1cf"] { stop-color: #7FE8D8 !important; }
+.tritanopia stop[stop-color="#1C6AFF"] { stop-color: #40D4C8 !important; }
+.tritanopia stop[stop-color="#1c6aff"] { stop-color: #40D4C8 !important; }
+.tritanopia stop[stop-color="#FBC24E"] { stop-color: #FFB8C8 !important; }
+.tritanopia stop[stop-color="#fbc24e"] { stop-color: #FFB8C8 !important; }
+.tritanopia stop[stop-color="#8C7AE7"] { stop-color: #E88FCF !important; }
+.tritanopia stop[stop-color="#8c7ae7"] { stop-color: #E88FCF !important; }
+
+/* Blue colors - convert to red/pink tones for tritanopia */
+.tritanopia .bg-blue-50 {
+    background-color: #FFF5F5 !important;
+}
+
+.tritanopia .bg-blue-100 {
+    background-color: #FFE0E0 !important;
+}
+
+.tritanopia .bg-blue-200 {
+    background-color: #FFCCCC !important;
+}
+
+.tritanopia .bg-blue-300 {
+    background-color: #FFB3B3 !important;
+}
+
+.tritanopia .bg-blue-400 {
+    background-color: #FF9999 !important;
+}
+
+.tritanopia .bg-blue-500 {
+    background-color: #FF6666 !important;
+}
+
+.tritanopia .bg-blue-600 {
+    background-color: #FF4D4D !important;
+}
+
+.tritanopia .bg-blue-700 {
+    background-color: #FF3333 !important;
+}
+
+.tritanopia .text-blue-500 {
+    color: #FF6666 !important;
+}
+
+.tritanopia .text-blue-600 {
+    color: #FF4D4D !important;
+}
+
+.tritanopia .text-blue-700 {
+    color: #FF3333 !important;
+}
+
+.tritanopia .border-blue-500 {
+    border-color: #FF6666 !important;
+}
+
+.tritanopia .border-blue-600 {
+    border-color: #FF4D4D !important;
+}
+
+/* Yellow colors - convert to pink/rose tones for tritanopia */
+.tritanopia .bg-yellow-50 {
+    background-color: #FFF0F5 !important;
+}
+
+.tritanopia .bg-yellow-100 {
+    background-color: #FFE4E8 !important;
+}
+
+.tritanopia .bg-yellow-200 {
+    background-color: #FFD1DC !important;
+}
+
+.tritanopia .bg-yellow-300 {
+    background-color: #FFAEC3 !important;
+}
+
+.tritanopia .bg-yellow-400 {
+    background-color: #FF8FA9 !important;
+}
+
+.tritanopia .bg-yellow-500 {
+    background-color: #FF6B8E !important;
+}
+
+.tritanopia .bg-yellow-600 {
+    background-color: #FF4775 !important;
+}
+
+.tritanopia .text-yellow-500 {
+    color: #FF6B8E !important;
+}
+
+.tritanopia .text-yellow-600 {
+    color: #FF4775 !important;
+}
+
+/* Green colors - shift to cyan/turquoise for tritanopia */
+.tritanopia .bg-green-50 {
+    background-color: #E0F7FA !important;
+}
+
+.tritanopia .bg-green-100 {
+    background-color: #B2EBF2 !important;
+}
+
+.tritanopia .bg-green-200 {
+    background-color: #80DEEA !important;
+}
+
+.tritanopia .bg-green-300 {
+    background-color: #4DD0E1 !important;
+}
+
+.tritanopia .bg-green-400 {
+    background-color: #26C6DA !important;
+}
+
+.tritanopia .bg-green-500 {
+    background-color: #00BCD4 !important;
+}
+
+.tritanopia .bg-green-600 {
+    background-color: #00ACC1 !important;
+}
+
+.tritanopia .bg-green-700 {
+    background-color: #0097A7 !important;
+}
+
+.tritanopia .text-green-400 {
+    color: #26C6DA !important;
+}
+
+.tritanopia .text-green-500 {
+    color: #00BCD4 !important;
+}
+
+.tritanopia .text-green-600 {
+    color: #00ACC1 !important;
+}
+
+.tritanopia .text-green-700 {
+    color: #0097A7 !important;
+}
+
+.tritanopia .border-green-500 {
+    border-color: #00BCD4 !important;
+}
+
+.tritanopia .border-green-600 {
+    border-color: #00ACC1 !important;
+}
+
+/* Red colors - keep red but adjust for tritanopia */
+.tritanopia .bg-red-50 {
+    background-color: #FFEBEE !important;
+}
+
+.tritanopia .bg-red-100 {
+    background-color: #FFCDD2 !important;
+}
+
+.tritanopia .bg-red-200 {
+    background-color: #EF9A9A !important;
+}
+
+.tritanopia .bg-red-300 {
+    background-color: #E57373 !important;
+}
+
+.tritanopia .bg-red-400 {
+    background-color: #EF5350 !important;
+}
+
+.tritanopia .bg-red-500 {
+    background-color: #F44336 !important;
+}
+
+.tritanopia .bg-red-600 {
+    background-color: #E53935 !important;
+}
+
+.tritanopia .bg-red-700 {
+    background-color: #D32F2F !important;
+}
+
+.tritanopia .text-red-500 {
+    color: #F44336 !important;
+}
+
+.tritanopia .text-red-600 {
+    color: #E53935 !important;
+}
+
+.tritanopia .text-red-700 {
+    color: #D32F2F !important;
+}
+
+.tritanopia .border-red-500 {
+    border-color: #F44336 !important;
+}
+
+.tritanopia .border-red-600 {
+    border-color: #E53935 !important;
+}
+
+/* Purple colors - shift to pink/magenta for tritanopia */
+.tritanopia .bg-purple-50 {
+    background-color: #FCE4EC !important;
+}
+
+.tritanopia .bg-purple-100 {
+    background-color: #F8BBD0 !important;
+}
+
+.tritanopia .bg-purple-500 {
+    background-color: #EC407A !important;
+}
+
+.tritanopia .bg-purple-600 {
+    background-color: #D81B60 !important;
+}
+
+.tritanopia .bg-purple-900 {
+    background-color: #880E4F !important;
+}
+
+.tritanopia .text-purple-400 {
+    color: #F06292 !important;
+}
+
+.tritanopia .text-purple-500 {
+    color: #EC407A !important;
+}
+
+.tritanopia .text-purple-600 {
+    color: #D81B60 !important;
+}
+
+.tritanopia .text-purple-700 {
+    color: #C2185B !important;
+}
+
+/* Orange colors - shift to coral for tritanopia */
+.tritanopia .bg-orange-50 {
+    background-color: #FFF3F0 !important;
+}
+
+.tritanopia .bg-orange-100 {
+    background-color: #FFE0D9 !important;
+}
+
+.tritanopia .bg-orange-200 {
+    background-color: #FFC4B2 !important;
+}
+
+.tritanopia .bg-orange-300 {
+    background-color: #FFA38C !important;
+}
+
+.tritanopia .bg-orange-400 {
+    background-color: #FF8466 !important;
+}
+
+.tritanopia .bg-orange-500 {
+    background-color: #FF6347 !important;
+}
+
+.tritanopia .bg-orange-600 {
+    background-color: #FF4500 !important;
+}
+
+.tritanopia .bg-orange-900 {
+    background-color: #BF360C !important;
+}
+
+.tritanopia .text-orange-400 {
+    color: #FF7043 !important;
+}
+
+.tritanopia .text-orange-500 {
+    color: #FF6347 !important;
+}
+
+.tritanopia .text-orange-600 {
+    color: #FF4500 !important;
+}
+
+.tritanopia .text-orange-700 {
+    color: #E64A19 !important;
+}
+
+/* Rose/Pink colors for tritanopia */
+.tritanopia .bg-rose-100 {
+    background-color: #FFE4E6 !important;
+}
+
+.tritanopia .bg-rose-200 {
+    background-color: #FECDD3 !important;
+}
+
+.tritanopia .bg-rose-500 {
+    background-color: #F43F5E !important;
+}
+
+.tritanopia .bg-rose-600 {
+    background-color: #E11D48 !important;
+}
+
+.tritanopia .text-rose-500 {
+    color: #F43F5E !important;
+}
+
+.tritanopia .text-rose-600 {
+    color: #E11D48 !important;
+}
+
+/* Emerald/Teal - convert to cyan for tritanopia */
+.tritanopia .bg-emerald-500 {
+    background-color: #14B8A6 !important;
+}
+
+.tritanopia .bg-emerald-600 {
+    background-color: #0D9488 !important;
+}
+
+.tritanopia .bg-teal-500 {
+    background-color: #14B8A6 !important;
+}
+
+.tritanopia .text-emerald-500 {
+    color: #14B8A6 !important;
+}
+
+.tritanopia .text-teal-500 {
+    color: #14B8A6 !important;
+}
+
+/* Gradient adjustments for tritanopia */
+.tritanopia [class*="from-blue"] {
+    --tw-gradient-from: #FF6666 !important;
+}
+
+.tritanopia [class*="to-blue"] {
+    --tw-gradient-to: #FF6666 !important;
+}
+
+.tritanopia [class*="from-yellow"] {
+    --tw-gradient-from: #FF6B8E !important;
+}
+
+.tritanopia [class*="to-yellow"] {
+    --tw-gradient-to: #FF6B8E !important;
+}
+
+.tritanopia [class*="from-green"] {
+    --tw-gradient-from: #00BCD4 !important;
+}
+
+.tritanopia [class*="to-green"] {
+    --tw-gradient-to: #00BCD4 !important;
+}
+
+/* Status colors for tritanopia */
+.tritanopia .bg-destructive {
+    background-color: #F44336 !important;
+}
+
+.tritanopia .text-destructive {
+    color: #F44336 !important;
+}
+
+/* Inline styles for tritanopia */
+.tritanopia [style*="background-color: rgb(59, 130, 246)"],
+.tritanopia [style*="background-color: #3B82F6"] {
+    background-color: #FF6666 !important;
+}
+
+.tritanopia [style*="background-color: rgb(251, 191, 36)"],
+.tritanopia [style*="background-color: #FBBF24"] {
+    background-color: #FF6B8E !important;
+}
+
+.tritanopia [style*="background-color: rgb(16, 185, 129)"],
+.tritanopia [style*="background-color: #10B981"] {
+    background-color: #00BCD4 !important;
+}
+
+.tritanopia [style*="color: rgb(59, 130, 246)"],
+.tritanopia [style*="color: #3B82F6"] {
+    color: #FF6666 !important;
+}
+
+.tritanopia [style*="color: rgb(251, 191, 36)"],
+.tritanopia [style*="color: #FBBF24"] {
+    color: #FF6B8E !important;
+}
+
+.tritanopia [style*="color: rgb(16, 185, 129)"],
+.tritanopia [style*="color: #10B981"] {
+    color: #00BCD4 !important;
+}
+
+.tritanopia [class*="bg-[#00D37F]"],
+.tritanopia [class*="bg-[#00d37f]"] {
+    background-color: #00BCD4 !important;
+}
+
+.tritanopia [class*="bg-[#10B981]"],
+.tritanopia [class*="bg-[#10b981]"] {
+    background-color: #00BCD4 !important;
+}
+
+.tritanopia [class*="text-[#00D37F]"],
+.tritanopia [class*="text-[#00d37f]"] {
+    color: #00BCD4 !important;
+}
+
+.tritanopia [class*="text-[#10B981]"],
+.tritanopia [class*="text-[#10b981]"] {
+    color: #00BCD4 !important;
+}
+
+/* Monochromacy (Total color blindness) - Everything in grayscale */
+.monochromacy {
+    filter: grayscale(100%) contrast(1.1);
+    /* Update CSS variables for monochromacy */
+    --accent-primary: #4A4A4A;
+    --accent-secondary: #5A5A5A;
+    --accent-color: #4A4A4A;
+}
+
+/* Prevent accent color swatches from being affected by color vision filters */
+.monochromacy .accent-color-swatches,
+.monochromacy .accent-color-swatches * {
+    filter: none !important;
+}
+
+.monochromacy [class*="bg-[#1C6AFF]"],
+.monochromacy [class*="bg-[#1c6aff]"] {
+    background-color: #4A4A4A !important;
+    filter: none;
+}
+
+.monochromacy [class*="bg-[#8C7AE7]"],
+.monochromacy [class*="bg-[#8c7ae7]"] {
+    background-color: #5A5A5A !important;
+    filter: none;
+}
+
+.monochromacy [class*="bg-[#98F1CF]"],
+.monochromacy [class*="bg-[#98f1cf]"] {
+    background-color: #BBBBBB !important;
+    filter: none;
+}
+
+.monochromacy [class*="bg-[#FBC24E]"],
+.monochromacy [class*="bg-[#fbc24e]"] {
+    background-color: #888888 !important;
+    filter: none;
+}
+
+.monochromacy [class*="text-[#1C6AFF]"],
+.monochromacy [class*="text-[#1c6aff]"],
+.monochromacy [class*="text-[#8C7AE7]"],
+.monochromacy [class*="text-[#8c7ae7]"],
+.monochromacy [class*="text-[#98F1CF]"],
+.monochromacy [class*="text-[#98f1cf]"],
+.monochromacy [class*="text-[#FBC24E]"],
+.monochromacy [class*="text-[#fbc24e]"] {
+    color: #2A2A2A !important;
+    filter: none;
+}
+
+.monochromacy [class*="border-[#1C6AFF]"],
+.monochromacy [class*="border-[#1c6aff]"],
+.monochromacy [class*="border-[#8C7AE7]"],
+.monochromacy [class*="border-[#8c7ae7]"],
+.monochromacy [class*="border-[#98F1CF]"],
+.monochromacy [class*="border-[#98f1cf]"],
+.monochromacy [class*="border-[#FBC24E]"],
+.monochromacy [class*="border-[#fbc24e]"] {
+    border-color: #666666 !important;
+    filter: none;
+}
+
+/* SVG color transformations for monochromacy */
+.monochromacy [stroke="#1C6AFF"] { stroke: #4A4A4A !important; }
+.monochromacy [stroke="#1c6aff"] { stroke: #4A4A4A !important; }
+.monochromacy [stroke="#8C7AE7"] { stroke: #5A5A5A !important; }
+.monochromacy [stroke="#8c7ae7"] { stroke: #5A5A5A !important; }
+.monochromacy [stroke="#98F1CF"] { stroke: #BBBBBB !important; }
+.monochromacy [stroke="#98f1cf"] { stroke: #BBBBBB !important; }
+.monochromacy [stroke="#FBC24E"] { stroke: #888888 !important; }
+.monochromacy [stroke="#fbc24e"] { stroke: #888888 !important; }
+
+.monochromacy [fill="#1C6AFF"] { fill: #4A4A4A !important; }
+.monochromacy [fill="#1c6aff"] { fill: #4A4A4A !important; }
+.monochromacy [fill="#8C7AE7"] { fill: #5A5A5A !important; }
+.monochromacy [fill="#8c7ae7"] { fill: #5A5A5A !important; }
+.monochromacy [fill="#98F1CF"] { fill: #BBBBBB !important; }
+.monochromacy [fill="#98f1cf"] { fill: #BBBBBB !important; }
+.monochromacy [fill="#FBC24E"] { fill: #888888 !important; }
+.monochromacy [fill="#fbc24e"] { fill: #888888 !important; }
+
+.monochromacy stop[stop-color="#1C6AFF"] { stop-color: #4A4A4A !important; }
+.monochromacy stop[stop-color="#1c6aff"] { stop-color: #4A4A4A !important; }
+.monochromacy stop[stop-color="#8C7AE7"] { stop-color: #5A5A5A !important; }
+.monochromacy stop[stop-color="#8c7ae7"] { stop-color: #5A5A5A !important; }
+.monochromacy stop[stop-color="#98F1CF"] { stop-color: #BBBBBB !important; }
+.monochromacy stop[stop-color="#98f1cf"] { stop-color: #BBBBBB !important; }
+.monochromacy stop[stop-color="#FBC24E"] { stop-color: #888888 !important; }
+.monochromacy stop[stop-color="#fbc24e"] { stop-color: #888888 !important; }
+
+/* Use accent color for gradients */
+.accent-gradient {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+}
+
+/* Update primary color references to use accent */
+.bg-\[--accent-primary\] {
+    background-color: var(--accent-primary);
+}
+
+.text-\[--accent-primary\] {
+    color: var(--accent-primary);
+}
+
+.border-\[--accent-primary\] {
+    border-color: var(--accent-primary);
+}
+
+/* ========================================== */
+/* TOGGLE SWITCHES WITH ACCENT COLOR          */
+/* ========================================== */
+
+/* Override all toggle switches to use accent color */
+input.peer:checked + div {
+    background-color: var(--accent-primary) !important;
+}
+
+/* Override focus ring to use accent color */
+input.peer:focus + div {
+    box-shadow: 0 0 0 2px var(--accent-primary) !important;
+}
+
+/* When custom gradient is enabled, the toggle circle uses secondary color */
+.custom-gradient-active input.peer:checked + div::after {
+    background-color: var(--accent-secondary) !important;
+}
+
+/* ========================================== */
+/* DARK MODE OVERRIDES                        */
+/* ========================================== */
+
+/* Dark mode overrides for common Tailwind classes */
+.dark .bg-white {
+    background-color: var(--card) !important;
+}
+
+.dark .bg-gray-50 {
+    background-color: var(--card-nested) !important;
+}
+
+.dark .bg-gray-100 {
+    background-color: var(--secondary) !important;
+}
+
+.dark .bg-gray-200 {
+    background-color: var(--muted) !important;
+}
+
+/* Colony Dashboard Background */
+.dark .bg-\[\\#F4F6FA\] {
+    background-color: #0A0E1A !important;
+}
+
+.dark .text-gray-900 {
+    color: var(--foreground) !important;
+}
+
+.dark .text-gray-800 {
+    color: var(--foreground) !important;
+}
+
+.dark .text-gray-700 {
+    color: var(--muted-foreground) !important;
+}
+
+.dark .text-gray-600 {
+    color: var(--muted-foreground) !important;
+}
+
+.dark .text-gray-500 {
+    color: var(--muted-foreground) !important;
+}
+
+.dark .border-gray-200 {
+    border-color: var(--border) !important;
+}
+
+.dark .border-gray-100 {
+    border-color: var(--border) !important;
+}
+
+.dark .hover\:bg-gray-50:hover {
+    background-color: var(--secondary) !important;
+}
+
+.dark .hover\:bg-gray-100:hover {
+    background-color: var(--muted) !important;
+}
+
+.dark .hover\:bg-gray-200:hover {
+    background-color: var(--accent) !important;
+}
+
+/* Apply accent color to brand color classes */
+.bg-\[--accent-primary\] {
+    background-color: var(--accent-primary) !important;
+}
+
+.text-\[--accent-primary\] {
+    color: var(--accent-primary) !important;
+}
+
+.border-\[--accent-primary\] {
+    border-color: var(--accent-primary) !important;
+}
+
+/* Override Colony brand colors with accent colors - using attribute selector for better Tailwind v4 support */
+[class*="bg-[#1C6AFF]"],
+[class*="bg-[#1c6aff]"] {
+    background-color: var(--colony-primary-blue) !important;
+}
+
+[class*="text-[#1C6AFF]"],
+[class*="text-[#1c6aff]"] {
+    color: var(--colony-primary-blue) !important;
+}
+
+[class*="border-[#1C6AFF]"],
+[class*="border-[#1c6aff]"] {
+    border-color: var(--colony-primary-blue) !important;
+}
+
+[class*="from-[#1C6AFF]"],
+[class*="from-[#1c6aff]"] {
+    --tw-gradient-from: var(--colony-primary-blue) !important;
+}
+
+[class*="to-[#1C6AFF]"],
+[class*="to-[#1c6aff]"] {
+    --tw-gradient-to: var(--colony-primary-blue) !important;
+}
+
+[class*="ring-[#1C6AFF]"],
+[class*="ring-[#1c6aff]"] {
+    --tw-ring-color: var(--colony-primary-blue) !important;
+}
+
+[class*="focus:ring-[#1C6AFF]"]:focus,
+[class*="focus:ring-[#1c6aff]"]:focus {
+    --tw-ring-color: var(--colony-primary-blue) !important;
+}
+
+/* Support for hover states with brand colors */
+[class*="hover:bg-[#1C6AFF]"]:hover,
+[class*="hover:bg-[#1c6aff]"]:hover {
+    background-color: var(--colony-primary-blue) !important;
+}
+
+[class*="hover:text-[#1C6AFF]"]:hover,
+[class*="hover:text-[#1c6aff]"]:hover {
+    color: var(--colony-primary-blue) !important;
+}
+
+/* Support for focus states with brand colors */
+[class*="focus:bg-[#1C6AFF]"]:focus,
+[class*="focus:bg-[#1c6aff]"]:focus {
+    background-color: var(--colony-primary-blue) !important;
+}
+
+[class*="focus:border-[#1C6AFF]"]:focus,
+[class*="focus:border-[#1c6aff]"]:focus {
+    border-color: var(--colony-primary-blue) !important;
+}
+
+/* Support for opacity/transparency variations */
+[class*="bg-[#1C6AFF]/"],
+[class*="bg-[#1c6aff]/"] {
+    background-color: var(--colony-primary-blue) !important;
+}
+
+[class*="text-[#1C6AFF]/"],
+[class*="text-[#1c6aff]/"] {
+    color: var(--colony-primary-blue) !important;
+}
+
+/* Additional catch-all for any inline styles or direct usage */
+[style*="background-color: rgb(28, 106, 255)"],
+[style*="background-color: #1C6AFF"],
+[style*="background-color: #1c6aff"],
+[style*="background-color:#1C6AFF"],
+[style*="background-color:#1c6aff"] {
+    background-color: var(--colony-primary-blue) !important;
+}
+
+[style*="color: rgb(28, 106, 255)"],
+[style*="color: #1C6AFF"],
+[style*="color: #1c6aff"],
+[style*="color:#1C6AFF"],
+[style*="color:#1c6aff"] {
+    color: var(--colony-primary-blue) !important;
+}
+
+[style*="border-color: rgb(28, 106, 255)"],
+[style*="border-color: #1C6AFF"],
+[style*="border-color: #1c6aff"],
+[style*="border-color:#1C6AFF"],
+[style*="border-color:#1c6aff"] {
+    border-color: var(--colony-primary-blue) !important;
+}
+
+/* ========================================== */
+/* FOCUS MODE                                 */
+/* ========================================== */
+
+/* Focus Mode: Base */
+.focus-mode {
+    /* Apply subtle changes when focus mode is active */
+    background-color: #fafafa !important;
+}
+
+.dark.focus-mode {
+    background-color: #0f1117 !important;
+}
+
+/* Focus Mode: Hide Sidebar */
+.focus-hide-sidebar aside,
+.focus-hide-sidebar nav[class*="sidebar"],
+.focus-hide-sidebar [class*="sidebar"] {
+    display: none !important;
+}
+
+.focus-hide-sidebar main {
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+/* Focus Mode: Simplify UI */
+.focus-simplify-ui {
+    /* Hide decorative elements */
+}
+
+/* Remove all shadows */
+.focus-simplify-ui [class*="shadow"],
+.focus-simplify-ui .shadow,
+.focus-simplify-ui .shadow-sm,
+.focus-simplify-ui .shadow-md,
+.focus-simplify-ui .shadow-lg,
+.focus-simplify-ui .shadow-xl {
+    box-shadow: none !important;
+}
+
+.focus-simplify-ui [class*="shadow"]:not(.dark *),
+.focus-simplify-ui .shadow:not(.dark *),
+.focus-simplify-ui .shadow-sm:not(.dark *),
+.focus-simplify-ui .shadow-md:not(.dark *),
+.focus-simplify-ui .shadow-lg:not(.dark *),
+.focus-simplify-ui .shadow-xl:not(.dark *) {
+    border: 1px solid #e5e7eb !important;
+}
+
+.dark .focus-simplify-ui [class*="shadow"],
+.dark .focus-simplify-ui .shadow,
+.dark .focus-simplify-ui .shadow-sm,
+.dark .focus-simplify-ui .shadow-md,
+.dark .focus-simplify-ui .shadow-lg,
+.dark .focus-simplify-ui .shadow-xl {
+    border: 1px solid #4b5563 !important;
+}
+
+.focus-simplify-ui [class*="gradient"]:not(.dark *),
+.focus-simplify-ui .accent-gradient:not(.dark *) {
+    background: #f3f4f6 !important;
+}
+
+.dark .focus-simplify-ui [class*="gradient"],
+.dark .focus-simplify-ui .accent-gradient {
+    background: #374151 !important;
+}
+
+/* Remove transitions for better performance and less distraction */
+.focus-simplify-ui *:not(button):not(a):not(input):not(textarea) {
+    transition: none !important;
+    animation: none !important;
+}
+
+.focus-simplify-ui .bg-gradient-to-br:not(.dark *),
+.focus-simplify-ui .bg-gradient-to-r:not(.dark *),
+.focus-simplify-ui .bg-gradient-to-l:not(.dark *),
+.focus-simplify-ui .bg-gradient-to-t:not(.dark *),
+.focus-simplify-ui .bg-gradient-to-b:not(.dark *) {
+    background: var(--accent-color) !important;
+}
+
+.dark .focus-simplify-ui .bg-gradient-to-br,
+.dark .focus-simplify-ui .bg-gradient-to-r,
+.dark .focus-simplify-ui .bg-gradient-to-l,
+.dark .focus-simplify-ui .bg-gradient-to-t,
+.dark .focus-simplify-ui .bg-gradient-to-b {
+    background: var(--accent-color) !important;
+}
+
+/* Reduce border radius for cleaner look */
+.focus-simplify-ui [class*="rounded-2xl"] {
+    border-radius: 0.75rem !important;
+}
+
+.focus-simplify-ui [class*="rounded-xl"] {
+    border-radius: 0.5rem !important;
+}
+
+.focus-simplify-ui [class*="rounded-lg"] {
+    border-radius: 0.375rem !important;
+}
+
+/* Simplify card spacing */
+.focus-simplify-ui > div > div {
+    gap: 1rem !important;
+}
+
+/* Hide decorative icons and illustrations */
+.focus-simplify-ui [class*="illustration"],
+.focus-simplify-ui [class*="decorative"],
+.focus-simplify-ui .emoji {
+    opacity: 0.5 !important;
+}
+
+/* Simplify hover states */
+.focus-simplify-ui button:hover,
+.focus-simplify-ui a:hover {
+    transform: none !important;
+}
+
+/* Focus Mode: Grayscale */
+.focus-grayscale {
+    filter: grayscale(100%);
+}
+
+.focus-grayscale * {
+    filter: grayscale(100%);
+}
+
+/* Focus Mode: Hide Notifications */
+.focus-hide-notifications .notification-badge,
+.focus-hide-notifications [class*="badge"],
+.focus-hide-notifications [data-badge],
+.focus-hide-notifications .bg-red-500,
+.focus-hide-notifications .bg-red-600,
+.focus-hide-notifications [class*="notification"],
+.focus-hide-notifications .alert-badge {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
+}
+
+.focus-hide-notifications [class*="notification"] {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
+}
+
+/* Hide notification dots and indicators */
+.focus-hide-notifications [class*="dot"],
+.focus-hide-notifications .w-2.h-2.rounded-full,
+.focus-hide-notifications .notification-dot {
+    display: none !important;
+}
+
+/* Focus Mode: Enhanced main content area */
+.focus-mode main {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.focus-mode .dashboard-scroll-container {
+    scrollbar-width: none;
+}
+
+.focus-mode .dashboard-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Focus Mode: Increase content readability */
+.focus-mode p,
+.focus-mode span,
+.focus-mode div {
+    line-height: 1.6;
+}
+
+/* Focus Mode: Reduce visual noise */
+.focus-simplify-ui .bg-pattern,
+.focus-simplify-ui [class*="pattern"],
+.focus-simplify-ui .background-decoration {
+    display: none !important;
+}
+
+/* Focus Mode: Simplify borders */
+.focus-simplify-ui [class*="border-2"],
+.focus-simplify-ui [class*="border-3"],
+.focus-simplify-ui [class*="border-4"] {
+    border-width: 1px !important;
+}
+
+/* ========================================== */
+/* CUSTOM GRADIENT                            */
+/* ========================================== */
+
+:root {
+    --gradient-primary: #000000;
+    --gradient-secondary: #FFC371;
+    --sidebar-width: 250px;
+}
+
+/* Apply custom gradient when enabled */
+.custom-gradient {
+    --accent-primary: var(--gradient-primary);
+    --accent-secondary: var(--gradient-secondary);
+}
+
+.custom-gradient .bg-gradient-to-br,
+.custom-gradient .bg-gradient-to-r,
+.custom-gradient .bg-gradient-to-l,
+.custom-gradient .bg-gradient-to-t,
+.custom-gradient .bg-gradient-to-b {
+    background: linear-gradient(135deg, var(--gradient-primary), var(--gradient-secondary)) !important;
+}
+
+/* Apply gradient to elements with Colony colors */
+.custom-gradient [class*="bg-gradient"],
+.custom-gradient .accent-gradient {
+    background: linear-gradient(135deg, var(--gradient-primary), var(--gradient-secondary)) !important;
+}
+
+/* ========================================== */
+/* RANGE SLIDER STYLING                       */
+/* ========================================== */
+
+input[type="range"].slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+input[type="range"].slider::-webkit-slider-track {
+    background: #e5e7eb;
+    height: 8px;
+    border-radius: 4px;
+}
+
+input[type="range"].slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-secondary);
+    cursor: pointer;
+    margin-top: -6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+input[type="range"].slider::-webkit-slider-thumb:hover {
+    background: var(--accent-secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    filter: brightness(0.9);
+}
+
+/* Firefox */
+input[type="range"].slider::-moz-range-track {
+    background: #e5e7eb;
+    height: 8px;
+    border-radius: 4px;
+}
+
+input[type="range"].slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-secondary);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+input[type="range"].slider::-moz-range-thumb:hover {
+    background: var(--accent-secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    filter: brightness(0.9);
+}
+
+/* Progress Slider Styling */
+input[type="range"].slider-progress {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    height: 4px;
+    border-radius: 4px;
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+input[type="range"].slider-progress::-webkit-slider-track {
+    background: transparent;
+    height: 4px;
+    border-radius: 4px;
+}
+
+input[type="range"].slider-progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-secondary);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+    border: 3px solid white;
+}
+
+input[type="range"].slider-progress::-webkit-slider-thumb:hover {
+    background: var(--accent-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transform: scale(1.15);
+    filter: brightness(0.9);
+}
+
+/* Firefox */
+input[type="range"].slider-progress::-moz-range-track {
+    background: transparent;
+    height: 4px;
+    border-radius: 4px;
+}
+
+input[type="range"].slider-progress::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-secondary);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+input[type="range"].slider-progress::-moz-range-thumb:hover {
+    background: var(--accent-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transform: scale(1.15);
+    filter: brightness(0.9);
+}
+
+/* Color input styling */
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 0.5rem;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+input[type="color"]::-moz-color-swatch {
+    border: none;
+    border-radius: 0.5rem;
+}
