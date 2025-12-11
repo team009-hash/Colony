@@ -1,8 +1,6 @@
-// postcss.config.cjs
 const prefixSelector = require("postcss-prefix-selector");
 
 module.exports = (ctx) => {
-    // ctx.file may be an object or string depending on runner
     const file = ctx.file && (ctx.file.basename || ctx.file);
     const isDashboard = file && /dashboard\.css$/.test(file);
 

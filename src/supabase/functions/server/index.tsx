@@ -5,15 +5,13 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 
 const app = new Hono();
 
-// Initialize Supabase client
+// Initialise Supabase client
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-// Enable logger
 app.use('*', logger(console.log));
 
-// Enable CORS for all routes and methods
 app.use(
   "/*",
   cors({
@@ -30,7 +28,6 @@ app.get("/make-server-e07a7e74/health", (c) => {
   return c.json({ status: "ok" });
 });
 
-// ==================== TASKS ENDPOINTS ====================
 
 // Get all tasks
 app.get("/make-server-e07a7e74/tasks", async (c) => {
@@ -141,7 +138,6 @@ app.delete("/make-server-e07a7e74/tasks/:id", async (c) => {
   }
 });
 
-// ==================== TEAM MEMBERS ENDPOINTS ====================
 
 // Get all team members
 app.get("/make-server-e07a7e74/team-members", async (c) => {
@@ -252,8 +248,6 @@ app.delete("/make-server-e07a7e74/team-members/:id", async (c) => {
   }
 });
 
-// ==================== PROJECTS ENDPOINTS ====================
-
 // Get all projects
 app.get("/make-server-e07a7e74/projects", async (c) => {
   try {
@@ -363,8 +357,6 @@ app.delete("/make-server-e07a7e74/projects/:id", async (c) => {
   }
 });
 
-// ==================== RECENT ACTIVITIES ENDPOINTS ====================
-
 // Get all recent activities
 app.get("/make-server-e07a7e74/activities", async (c) => {
   try {
@@ -409,9 +401,8 @@ app.post("/make-server-e07a7e74/activities", async (c) => {
   }
 });
 
-// ==================== SEED DATA ENDPOINT (MVP/DEMO) ====================
 
-// Populate database with sample data (for MVP/testing)
+// Populate database with sample data for MVP Demo
 app.post("/make-server-e07a7e74/seed-data", async (c) => {
   try {
     console.log('Starting database seeding...');
@@ -568,7 +559,7 @@ app.post("/make-server-e07a7e74/seed-data", async (c) => {
       },
     ];
 
-    // Sample recent activities
+    // sample recent activities
     const activities = [
       {
         id: '880e8400-e29b-41d4-a716-446655440001',
@@ -608,7 +599,7 @@ app.post("/make-server-e07a7e74/seed-data", async (c) => {
       },
     ];
 
-    // Insert data using upsert (won't duplicate if already exists)
+    // Insert data
     const { error: projectsError } = await supabase
       .from('projects')
       .upsert(projects, { onConflict: 'id' });
@@ -663,7 +654,7 @@ app.post("/make-server-e07a7e74/seed-data", async (c) => {
   }
 });
 
-// Clear all data (use with caution!)
+// Clear all data
 app.delete("/make-server-e07a7e74/clear-data", async (c) => {
   try {
     console.log('Clearing all database data...');

@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-// Your Firebase config
+// Firebase config
 const firebaseConfig = {
     apiKey: "AIzaSyChLyw25A6zysvkUJzWbG2K6myDu1i1peo",
     authDomain: "colony-platform.firebaseapp.com",

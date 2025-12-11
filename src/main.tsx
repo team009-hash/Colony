@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 
-// Set document title
+// Set document title to Colony
 document.title = 'Colony';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

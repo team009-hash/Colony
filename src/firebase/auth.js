@@ -34,7 +34,7 @@ export const doSignOut = () => {
     return signOut(auth);
 };
 
-// Optional helpers if you want them later:
+// Optional functionality to add if we get time later
 
 export const doPasswordReset = (email) => {
     return sendPasswordResetEmail(auth, email);

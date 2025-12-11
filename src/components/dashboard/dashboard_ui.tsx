@@ -104,10 +104,6 @@ import {
     Cell,
 } from "recharts";
 
-/* ========================================================================== */
-/*                            CONTEXT PROVIDERS                               */
-/* ========================================================================== */
-
 // Settings Context
 interface SettingsContextType {
     theme: "light" | "dark" | "auto";
@@ -357,7 +353,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         if (focusModeEnabled && focusModeHideNotifications) root.classList.add("focus-hide-notifications");
         else root.classList.remove("focus-hide-notifications");
 
-        // Apply custom gradient OR accent color (they are mutually exclusive)
+        // Apply custom gradient OR accent color
         if (customGradientEnabled) {
             // Use custom gradient colors
             root.style.setProperty("--accent-color", gradientPrimaryColor);
@@ -381,7 +377,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         root.style.setProperty("font-size", `${fontScale}px`);
     }, [theme, accentColor, fontSize, reducedMotion, highContrast, largeCursor, largeText, enhancedFocusIndicators, colorBlindFriendly, disableAutoplay, keyboardShortcutsOverlay, stickyKeysHelper, screenReaderOptimization, audioDescriptions, textToSpeech, colorVisionMode, focusModeEnabled, focusModeHideSidebar, focusModeSimplifyUI, focusModeGrayscale, focusModeHideNotifications, customGradientEnabled, gradientPrimaryColor, gradientSecondaryColor, sidebarWidth, fontScale]);
 
-    // Listen for system theme changes when in auto mode
+    // Check for system theme changes when in auto mode
     React.useEffect(() => {
         if (theme !== "auto") return;
 
@@ -552,9 +548,6 @@ export function useWidgets() {
     return context;
 }
 
-/* ========================================================================== */
-/*                          DASHBOARD SIDEBAR COMPONENT                       */
-/* ========================================================================== */
 
 export function DashboardSidebar({
                                      isOpen,
@@ -694,9 +687,6 @@ export function DashboardSidebar({
     );
 }
 
-/* ========================================================================== */
-/*                         DASHBOARD NAVBAR COMPONENT                         */
-/* ========================================================================== */
 
 export function DashboardNavbar({ onMenuClick, currentUser }: { onMenuClick: () => void; currentUser?: any }) {
     const { focusModeEnabled, setFocusModeEnabled, focusModeHideSidebar, theme, setTheme } = useSettings();
@@ -881,9 +871,6 @@ export function DashboardNavbar({ onMenuClick, currentUser }: { onMenuClick: () 
     );
 }
 
-/* ========================================================================== */
-/*                         DASHBOARD WIDGET WRAPPER                           */
-/* ========================================================================== */
 
 export function WidgetWrapper({
                                   children,
@@ -905,9 +892,6 @@ export function WidgetWrapper({
     return <div className={colSpan}>{children}</div>;
 }
 
-/* ========================================================================== */
-/*                        PRODUCTIVITY CARD COMPONENT                         */
-/* ========================================================================== */
 
 export function ProductivityCard() {
     const accentColor = useAccentColor();
@@ -969,9 +953,7 @@ export function ProductivityCard() {
     );
 }
 
-/* ========================================================================== */
-/*                        AI SUGGESTIONS CARD COMPONENT                       */
-/* ========================================================================== */
+
 
 export function AISuggestionsCard() {
     const accentColor = useAccentColor();
@@ -1075,9 +1057,7 @@ export function AISuggestionsCard() {
     );
 }
 
-/* ========================================================================== */
-/*                         WELLBEING CARD COMPONENT                           */
-/* ========================================================================== */
+
 
 export function WellbeingCard() {
     const moodData = [
@@ -1163,9 +1143,6 @@ export function WellbeingCard() {
     );
 }
 
-/* ========================================================================== */
-/*                       COLLABORATION CARD COMPONENT                         */
-/* ========================================================================== */
 
 export function CollaborationCard({ recentActivities = [] }: { recentActivities?: RecentActivity[] }) {
     const accentColor = useAccentColor();
@@ -1266,9 +1243,6 @@ export function CollaborationCard({ recentActivities = [] }: { recentActivities?
     );
 }
 
-/* ========================================================================== */
-/*                           TASKS CARD COMPONENT                             */
-/* ========================================================================== */
 
 export function TasksCard({ onNavigate }: { onNavigate?: (page: string) => void }) {
     const accentColor = useAccentColor();
@@ -1418,12 +1392,9 @@ export function TasksCard({ onNavigate }: { onNavigate?: (page: string) => void 
     );
 }
 
-// Alias for TasksCard for backward compatibility
+
 export const QuickTasksCard = TasksCard;
 
-/* ========================================================================== */
-/*                          RIGHT PANEL COMPONENT                             */
-/* ========================================================================== */
 
 export function RightPanel() {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -1594,10 +1565,6 @@ export function RightPanel() {
         </div>
     );
 }
-
-/* ========================================================================== */
-/*                        CUSTOMISE BUTTON COMPONENT                          */
-/* ========================================================================== */
 
 export function CustomiseButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -1837,9 +1804,6 @@ export function CustomiseButton() {
     );
 }
 
-/* ========================================================================== */
-/*                           TASK PAGE COMPONENTS                             */
-/* ========================================================================== */
 
 export function TaskHeader({ onAddTask, onMenuClick }: { onAddTask: () => void; onMenuClick?: () => void }) {
     const gradients = useGradientColors();
@@ -2412,9 +2376,6 @@ export function EditTaskModal({
     );
 }
 
-/* ========================================================================== */
-/*                           TEAM PAGE COMPONENTS                             */
-/* ========================================================================== */
 
 export function TeamHeader({ onAddMember, onMenuClick }: { onAddMember: () => void; onMenuClick?: () => void }) {
     const accentColor = useAccentColor();
@@ -2897,10 +2858,6 @@ export function AddMemberDialog({ isOpen, onClose }: { isOpen: boolean; onClose:
     );
 }
 
-/* ========================================================================== */
-/*                         AI ASSISTANT COMPONENTS                            */
-/* ========================================================================== */
-
 export function AIHeader({ onNewChat, onMenuClick }: { onNewChat: () => void; onMenuClick?: () => void }) {
     const accentColor = useAccentColor();
     const gradients = useGradientColors();
@@ -3365,9 +3322,6 @@ export function AISidebar() {
     );
 }
 
-/* ========================================================================== */
-/*                         WELLBEING PAGE COMPONENTS                          */
-/* ========================================================================== */
 
 export function WellbeingHeader({ onMenuClick }: { onMenuClick?: () => void }) {
     const { theme, setTheme } = useSettings();
@@ -3986,10 +3940,6 @@ export function WellnessResources() {
         </div>
     );
 }
-
-/* ========================================================================== */
-/*                         SETTINGS PAGE COMPONENTS                           */
-/* ========================================================================== */
 
 export function AccountSettings({
                                     profileImage,
@@ -6326,7 +6276,6 @@ export function TeamPage({ onNavigate, profileImage, onSignOut, recentActivities
     useEffect(() => {
         fetchMembers();
         fetchProjects();
-        // NOTE: Don't fetch recent activities here - the parent Dashboard component handles this
 
         // Set up real-time subscriptions for team members
         const membersSubscription = supabase
@@ -6397,7 +6346,7 @@ export function TeamPage({ onNavigate, profileImage, onSignOut, recentActivities
             .order('created_at', { ascending: false });
 
         if (error) {
-            // Silently handle table not found errors (PGRST205)
+            // Handle table not found errors (PGRST205)
             if (error.code === 'PGRST205') {
                 setMembers([]);
             } else {
@@ -6430,8 +6379,6 @@ export function TeamPage({ onNavigate, profileImage, onSignOut, recentActivities
             setProjects(data || []);
         }
     };
-
-    // NOTE: fetchRecentActivities removed - parent Dashboard component handles fetching
 
     const addRecentActivity = async (type: string, description: string, user: string = "You") => {
         // Parse description to extract action and entity_name

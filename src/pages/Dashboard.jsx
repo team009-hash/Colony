@@ -1,4 +1,3 @@
-// Dashboard.jsx - Main Dashboard Page
 import { useState, useEffect, useRef } from "react";
 import '../styles/dashboard.css';
 import { useNavigate } from "react-router-dom";
@@ -47,9 +46,6 @@ import {
     TeamPage
 } from "../components/dashboard/dashboard_ui";
 
-// -----------------------------------------------------------------------------
-// HELPER COMPONENTS
-// -----------------------------------------------------------------------------
 
 function AccessibilityIndicator() {
     const {
@@ -201,9 +197,6 @@ function AccessibilityIndicator() {
     );
 }
 
-// -----------------------------------------------------------------------------
-// DASHBOARD PAGES
-// -----------------------------------------------------------------------------
 
 function TaskPage({ onNavigate, profileImage, onSignOut }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -1271,9 +1264,6 @@ function DashboardApp() {
     );
 }
 
-// -----------------------------------------------------------------------------
-// MAIN DASHBOARD EXPORT - Wrapped with Providers
-// -----------------------------------------------------------------------------
 
 export default function Dashboard() {
     return (

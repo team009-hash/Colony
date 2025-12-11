@@ -171,9 +171,6 @@ p, span, div, a, button, input, textarea, label, li {
     }
 }
 
-/**
- * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
- */
 @layer base {
     :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
         h1 {
@@ -230,7 +227,6 @@ html {
     font-size: var(--font-size);
 }
 
-/* Ensure lucide-react SVG icons render properly */
 svg {
     stroke: currentColor;
     fill: none;
@@ -239,8 +235,6 @@ svg {
     stroke-linejoin: round;
 }
 
-/* Dynamic accent color replacement - replaces hardcoded blue with selected accent color */
-/* Only exclude accent color swatches from replacement */
 [class*="bg-[#1C6AFF]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 [class*="bg-[#1c6aff]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
     background-color: var(--accent-color) !important;
@@ -273,7 +267,7 @@ svg {
     --tw-gradient-to: var(--accent-color) var(--tw-gradient-to-position) !important;
 }
 
-/* Replace gradients with opacity variants */
+
 [class*="from-[#1C6AFF]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 [class*="from-[#1c6aff]/10"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
     --tw-gradient-from: rgb(from var(--accent-color) r g b / 0.1) var(--tw-gradient-from-position) !important;
@@ -286,7 +280,7 @@ svg {
     --tw-gradient-to: rgb(from var(--accent-color) r g b / 0.1) var(--tw-gradient-to-position) !important;
 }
 
-/* Replace secondary color (#8C7AE7) with gradient secondary when custom gradient is enabled */
+
 .custom-gradient [class*="bg-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 .custom-gradient [class*="bg-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
     background-color: var(--gradient-secondary) !important;
@@ -326,8 +320,6 @@ svg {
     --tw-gradient-to: rgb(from var(--gradient-secondary) r g b / 0.1) var(--tw-gradient-to-position) !important;
 }
 
-/* Replace all other accent colors when custom gradient is enabled */
-/* Green #10B981 */
 .custom-gradient [class*="bg-[#10B981]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 .custom-gradient [class*="bg-[#10b981]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
     background-color: var(--accent-color) !important;
@@ -343,7 +335,6 @@ svg {
     border-color: var(--accent-color) !important;
 }
 
-/* Purple #8B5CF6 */
 .custom-gradient [class*="bg-[#8B5CF6]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 .custom-gradient [class*="bg-[#8b5cf6]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
     background-color: var(--accent-color) !important;
@@ -354,7 +345,6 @@ svg {
     color: var(--accent-color) !important;
 }
 
-/* Mint/Cyan #06B6D4 */
 .custom-gradient [class*="bg-[#06B6D4]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 .custom-gradient [class*="bg-[#06b6d4]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
     background-color: var(--accent-color) !important;
@@ -365,7 +355,6 @@ svg {
     color: var(--accent-color) !important;
 }
 
-/* Yellow #F59E0B and #FFC850 */
 .custom-gradient [class*="bg-[#F59E0B]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 .custom-gradient [class*="bg-[#f59e0b]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 .custom-gradient [class*="bg-[#FFC850]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
@@ -380,7 +369,6 @@ svg {
     color: var(--accent-color) !important;
 }
 
-/* Pink #EC4899 and #FF6FB5 */
 .custom-gradient [class*="bg-[#EC4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 .custom-gradient [class*="bg-[#ec4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 .custom-gradient [class*="bg-[#FF6FB5]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
@@ -401,8 +389,6 @@ svg {
     filter: brightness(0.85);
 }
 
-/* GLOBAL accent color replacement - works for ALL accent colors */
-/* Green #10B981 */
 [class*="bg-[#10B981]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 [class*="bg-[#10b981]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
     background-color: var(--accent-color) !important;
@@ -418,7 +404,6 @@ svg {
     border-color: var(--accent-color) !important;
 }
 
-/* Purple #8B5CF6 */
 [class*="bg-[#8B5CF6]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 [class*="bg-[#8b5cf6]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
     background-color: var(--accent-color) !important;
@@ -434,7 +419,6 @@ svg {
     border-color: var(--accent-color) !important;
 }
 
-/* Mint/Cyan #06B6D4 */
 [class*="bg-[#06B6D4]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 [class*="bg-[#06b6d4]"]:not(.accent-color-swatches):not(.accent-color-swatches *) {
     background-color: var(--accent-color) !important;
@@ -450,7 +434,6 @@ svg {
     border-color: var(--accent-color) !important;
 }
 
-/* Yellow #F59E0B and #FFC850 */
 [class*="bg-[#F59E0B]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 [class*="bg-[#f59e0b]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 [class*="bg-[#FFC850]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
@@ -472,7 +455,6 @@ svg {
     border-color: var(--accent-color) !important;
 }
 
-/* Pink #EC4899 and #FF6FB5 */
 [class*="bg-[#EC4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 [class*="bg-[#ec4899]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
 [class*="bg-[#FF6FB5]"]:not(.accent-color-swatches):not(.accent-color-swatches *),
@@ -494,7 +476,6 @@ svg {
     border-color: var(--accent-color) !important;
 }
 
-/* Secondary color #8C7AE7 - replace globally with accent-secondary */
 [class*="bg-[#8C7AE7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *),
 [class*="bg-[#8c7ae7]"]:not(.accent-color-swatches):not(.accent-color-swatches *):not(.custom-gradient):not(.custom-gradient *) {
     background-color: var(--accent-secondary) !important;
@@ -1223,7 +1204,6 @@ svg {
 /* Deuteranopia (Green-blind) - Greens appear as browns/yellows */
 .deuteranopia {
     filter: saturate(0.7) hue-rotate(10deg) contrast(0.95) brightness(1.0) !important;
-    /* Update CSS variables for deuteranopia */
     --accent-primary: #3D7FFF;
     --accent-secondary: #7B8FE8;
     --accent-color: #3D7FFF;
@@ -3200,9 +3180,8 @@ input.peer:focus + div {
     background: linear-gradient(135deg, var(--gradient-primary), var(--gradient-secondary)) !important;
 }
 
-/* ========================================== */
-/* RANGE SLIDER STYLING                       */
-/* ========================================== */
+/* Range sliding style                  */
+
 
 input[type="range"].slider {
     -webkit-appearance: none;

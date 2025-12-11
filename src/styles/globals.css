@@ -134,16 +134,13 @@
         -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Force light mode when auth page is present - override dark mode */
+    /* Force light mode when auth page is present. Override dark mode */
     body:has(.auth-scope) {
         background-color: #f4f6fa !important;
         color: #111827 !important;
     }
 }
 
-/**
- * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
- */
 @layer base {
     :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
         h1 {
@@ -200,7 +197,6 @@ html {
     font-size: var(--font-size);
 }
 
-/* Ensure lucide-react SVG icons render properly - exclude brand icons with explicit fills */
 svg:not(.brand-icon):not([fill]):not([fill*="#"]) {
     stroke: currentColor;
     fill: none;
@@ -209,14 +205,12 @@ svg:not(.brand-icon):not([fill]):not([fill*="#"]) {
     stroke-linejoin: round;
 }
 
-/* Protect brand icons - NEVER remove fill from these SVGs or their children */
 svg.brand-icon {
-    fill: none !important; /* SVG container should have no fill */
+    fill: none !important;
 }
 
 svg.brand-icon path[fill],
 svg.brand-icon circle[fill],
 svg.brand-icon rect[fill],
 svg.brand-icon polygon[fill] {
-    /* Let the fill attribute work - don't override it */
 }

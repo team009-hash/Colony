@@ -1,8 +1,6 @@
-/* Auth Page Styles - Fancy Animated Design Matching Landing Page */
+/* Auth Page Styles */
 
-/* === SCOPED CSS VARIABLES FOR AUTH PAGE === */
 .auth-scope {
-    /* Auth-specific color palette (overriding globals.css) */
     --color-primary: #1c6aff;
     --color-secondary: #8c7ae7;
     --color-aqua: #98f1cf;
@@ -22,7 +20,6 @@
     --color-gray-900: #111827;
 }
 
-/* === GLOBAL RESET === */
 *,
 *::before,
 *::after {
@@ -44,7 +41,6 @@ body {
     min-height: 100%;
 }
 
-/* === ENHANCED ANIMATIONS === */
 @keyframes blob {
     0% {
         transform: translate(0px, 0px) scale(1);
@@ -175,7 +171,7 @@ body {
     }
 }
 
-/* === AUTH PAGE LAYOUT === */
+/* Auth Page Layout */
 .auth-page {
     min-height: 100vh;
     width: 100%;
@@ -205,7 +201,6 @@ body {
     animation: float 20s ease-in-out infinite;
 }
 
-/* === BACKGROUND ORBS (Matching Landing Hero with Enhanced Animation) === */
 .auth-orb {
     position: absolute;
     border-radius: 9999px;
@@ -244,7 +239,7 @@ body {
     animation-delay: 4s;
 }
 
-/* === BACK BUTTON === */
+/* Back button */
 .auth-back-button {
     position: fixed;
     top: 2rem;
@@ -301,7 +296,7 @@ body {
     transform: translateX(-3px);
 }
 
-/* === MAIN AUTH CARD === */
+/* Main Auth Card */
 .auth-card {
     position: relative;
     z-index: 10;
@@ -368,7 +363,7 @@ body {
     }
 }
 
-/* === AUTH HEADER === */
+/* Auth Header */
 .auth-header {
     text-align: center;
     margin-bottom: 1rem;
@@ -450,7 +445,7 @@ body {
     margin: 0;
 }
 
-/* === SECURITY BADGE === */
+/* Security Badge */
 .auth-security-badge {
     display: flex;
     align-items: center;
@@ -487,7 +482,7 @@ body {
     animation: pulse 2s ease-in-out infinite;
 }
 
-/* === TABS === */
+/* Tabs */
 .auth-tabs {
     display: flex;
     gap: 0.5rem;
@@ -525,7 +520,7 @@ body {
     background: rgba(28, 106, 255, 0.02);
 }
 
-/* === FORM WRAPPER === */
+/* Form Wrapper */
 .auth-form-wrapper {
     margin-bottom: 2rem;
     position: relative;
@@ -533,7 +528,7 @@ body {
     animation: fadeInUp 0.6s ease-out 0.5s both;
 }
 
-/* === INPUT STYLES === */
+/* Input Styles */
 .auth-input-group {
     margin-bottom: 0.9rem;
 }
@@ -623,7 +618,7 @@ body {
     height: 18px;
 }
 
-/* === ERROR MESSAGE === */
+/* Error Message */
 .auth-error {
     margin-bottom: 1rem;
     padding: 0.875rem 1rem;
@@ -639,7 +634,7 @@ body {
     animation: slideInLeft 0.4s ease-out;
 }
 
-/* === BUTTONS === */
+/* Button */
 .auth-primary-button {
     width: 100%;
     padding: 0.85rem;
@@ -691,7 +686,7 @@ body {
     cursor: not-allowed;
 }
 
-/* === FORGOT PASSWORD === */
+/* Forgot Password */
 .auth-forgot-password {
     text-align: right;
     margin-top: 0.5rem;
@@ -726,7 +721,7 @@ body {
     color: var(--color-secondary);
 }
 
-/* === DIVIDER === */
+/* Divider */
 .auth-divider {
     display: flex;
     align-items: center;
@@ -746,7 +741,7 @@ body {
     font-weight: 500;
 }
 
-/* === SOCIAL BUTTONS === */
+/* Social Buttons */
 .auth-social-buttons {
     display: flex;
     flex-direction: column;
@@ -816,10 +811,10 @@ body {
     z-index: 1;
 }
 
-/* Ensure SVG paths keep their explicit fill colors - override any global SVG rules */
+
 .auth-social-button svg path[fill],
 .auth-social-button svg path[fill*="#"] {
-    /* Don't override - let the SVG's fill attribute work naturally */
+
 }
 
 .auth-social-button span {
@@ -827,7 +822,7 @@ body {
     z-index: 1;
 }
 
-/* === FOOTER TEXT === */
+/* Footer Text */
 .auth-footer-text {
     margin-top: 2rem;
     padding-top: 2rem;
@@ -872,7 +867,7 @@ body {
     color: var(--color-secondary);
 }
 
-/* === RESPONSIVE === */
+/* Responsive */
 @media (max-width: 640px) {
     .auth-back-button {
         top: 1rem;

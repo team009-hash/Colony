@@ -1,15 +1,12 @@
 /* Landing Page Styles */
-
-/* === COLORS - Matching Auth Theme === */
 :root {
-    /* Primary Colors from Auth */
     --color-primary: #1c6aff;
     --color-secondary: #8c7ae7;
     --color-aqua: #98f1cf;
     --color-yellow: #fbc24e;
     --color-background: #f4f6fa;
 
-    /* Extended palette for landing page */
+
     --landing-primary: #1c6aff;
     --landing-primary-light: #4d8cff;
     --landing-primary-dark: #1557cc;
@@ -26,19 +23,16 @@
     --landing-yellow-light: #fcd277;
     --landing-yellow-dark: #f0b02e;
 
-    /* Background variations */
     --landing-bg-primary: #f4f6fa;
     --landing-bg-light: #f9fafb;
     --landing-bg-white: #ffffff;
 
-    /* Accent colors for variety */
     --landing-green: #22c55e;
     --landing-green-light: #4ade80;
     --landing-orange: #f97316;
     --landing-orange-light: #fb923c;
     --landing-pink: #ec4899;
 
-    /* Gray scale (matching auth) */
     --landing-gray-50: #f9fafb;
     --landing-gray-100: #f3f4f6;
     --landing-gray-200: #e5e7eb;
@@ -53,7 +47,7 @@
     --landing-white: #ffffff;
 }
 
-/* === ANIMATIONS === */
+/* Animation */
 @keyframes blob {
     0% {
         transform: translate(0px, 0px) scale(1);
@@ -94,19 +88,19 @@
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* === SMOOTH SCROLLING === */
+/* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
 }
 
-/* === LANDING PAGE CONTAINER === */
+/* Landing Page Container */
 .landing-page {
     min-height: 100vh;
     background: linear-gradient(to bottom right, var(--landing-bg-light), var(--color-background), rgba(28, 106, 255, 0.05));
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* === NAVIGATION === */
+/* Navigation */
 .landing-nav {
     position: sticky;
     top: 0;
@@ -250,7 +244,7 @@ html {
     transform: translateY(-1px);
 }
 
-/* === HERO SECTION === */
+/* Hero Section */
 .landing-hero {
     position: relative;
     overflow: hidden;
@@ -695,7 +689,7 @@ html {
     color: var(--landing-gray-600);
 }
 
-/* === FEATURES SECTION === */
+/* Features Section === */
 .landing-features {
     position: relative;
     padding: 5rem 0 8rem 0;
@@ -917,7 +911,7 @@ html {
     transform: translateX(0.25rem);
 }
 
-/* === AI SECTION === */
+/* AI Section */
 .landing-ai {
     position: relative;
     padding: 5rem 0 8rem 0;
@@ -1199,7 +1193,7 @@ html {
     color: var(--landing-gray-600);
 }
 
-/* === TESTIMONIALS SECTION === */
+/* Testimonials Section */
 .landing-testimonials {
     padding: 5rem 0 8rem 0;
     background-color: var(--landing-white);
@@ -1358,7 +1352,7 @@ html {
     }
 }
 
-/* === PRICING SECTION === */
+/* Pricing Section */
 .landing-pricing {
     padding: 5rem 0 8rem 0;
     background: linear-gradient(to bottom right, var(--landing-gray-50), var(--color-background));
@@ -1543,7 +1537,7 @@ html {
     color: var(--landing-primary-dark);
 }
 
-/* === STATS SECTION === */
+/* Stats Section */
 .landing-stats {
     padding: 5rem 0;
     background-color: var(--landing-white);
@@ -1649,7 +1643,7 @@ html {
     }
 }
 
-/* === CTA SECTION === */
+/* CTA Section */
 .landing-cta {
     position: relative;
     padding: 5rem 0 8rem 0;
@@ -1906,7 +1900,7 @@ html {
     height: 1.125rem;
 }
 
-/* === FOOTER === */
+/* Footer Section */
 .landing-footer {
     background: linear-gradient(135deg, #1a1f3a 0%, #252b4a 50%, #1a1f3a 100%);
     color: var(--landing-white);
