@@ -1,6 +1,4 @@
-// @ts-ignore
 import React, { useState, createContext, useContext, ReactNode, useRef, useEffect } from "react";
-// @ts-ignore
 import { supabase, type Task, type TeamMember, type Project, type RecentActivity } from "../../utils/supabase/client";
 
 import {
@@ -1843,7 +1841,7 @@ export function CustomiseButton() {
 /*                           TASK PAGE COMPONENTS                             */
 /* ========================================================================== */
 
-export function TaskHeader({ onAddTask }: { onAddTask: () => void }) {
+export function TaskHeader({ onAddTask, onMenuClick }: { onAddTask: () => void; onMenuClick?: () => void }) {
     const gradients = useGradientColors();
     const { theme, setTheme } = useSettings();
 
@@ -1859,6 +1857,15 @@ export function TaskHeader({ onAddTask }: { onAddTask: () => void }) {
         <header className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
+                    {onMenuClick && (
+                        <button
+                            onClick={onMenuClick}
+                            className="lg:hidden w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                            aria-label="Toggle menu"
+                        >
+                            <Menu size={20} className="text-gray-700 dark:text-gray-300" />
+                        </button>
+                    )}
                     <div>
                         <h1 className="text-2xl font-bold text-[#111827] dark:text-white">Tasks</h1>
                         <p className="text-sm text-gray-500 dark:text-gray-400">Manage your tasks and priorities</p>
@@ -1953,58 +1960,83 @@ export function TaskList({
     });
 
     const priorityColors = {
-        high: "bg-red-100 text-red-700",
-        medium: "bg-yellow-100 text-yellow-700",
-        low: "bg-green-100 text-green-700",
+        high: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
+        medium: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400",
+        low: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
     };
 
     return (
-        <div className="space-y-3">
+        <div className="space-y-3 sm:space-y-4">
             {filteredTasks.length === 0 ? (
                 <div className="text-center py-12">
-                    <p className="text-gray-500">No tasks found</p>
+                    <p className="text-gray-500 dark:text-gray-400">No tasks found</p>
                 </div>
             ) : (
                 filteredTasks.map((task) => (
                     <div
                         key={task.id}
-                        className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 hover:shadow-md transition-shadow"
+                        className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-3 sm:p-4 hover:shadow-md transition-shadow"
                     >
-                        <div className="flex items-start gap-4">
+                        <div className="flex items-start gap-3 sm:gap-4">
+                            {/* Checkbox */}
                             <div
                                 onClick={() => onToggle(task.id)}
-                                className={`w-6 h-6 rounded border-2 flex items-center justify-center cursor-pointer mt-1 ${
+                                className={`w-5 h-5 sm:w-6 sm:h-6 rounded border-2 flex items-center justify-center cursor-pointer mt-0.5 sm:mt-1 flex-shrink-0 ${
                                     task.completed ? "bg-[#1C6AFF] border-[#1C6AFF]" : "border-gray-300 dark:border-gray-600"
                                 }`}
                             >
-                                {task.completed && <Check size={16} className="text-white" />}
+                                {task.completed && <Check size={14} className="text-white sm:w-4 sm:h-4" />}
                             </div>
-                            <div className="flex-1">
-                                <h4 className={`font-semibold text-gray-900 dark:text-white ${task.completed ? "line-through" : ""}`}>
+
+                            {/* Task Content */}
+                            <div className="flex-1 min-w-0">
+                                <h4 className={`font-semibold text-sm sm:text-base text-gray-900 dark:text-white ${task.completed ? "line-through" : ""}`}>
                                     {task.title}
                                 </h4>
                                 {task.description && (
-                                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{task.description}</p>
+                                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+                                        {task.description}
+                                    </p>
                                 )}
-                                <div className="flex items-center gap-2 mt-3">
-                  <span className={`px-2 py-1 rounded text-xs font-medium ${priorityColors[task.priority]}`}>
+
+                                {/* Metadata - Stacks on mobile */}
+                                <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-3">
+                  <span className={`px-2 py-0.5 sm:py-1 rounded text-xs font-medium ${priorityColors[task.priority]}`}>
                     {task.priority}
                   </span>
                                     {task.dueDate && (
                                         <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                      <Calendar size={12} />
-                                            {task.dueDate}
+                      <Calendar size={12} className="flex-shrink-0" />
+                      <span className="truncate">{task.dueDate}</span>
                     </span>
                                     )}
                                     {task.category && (
                                         <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                      <Tag size={12} />
-                                            {task.category}
+                      <Tag size={12} className="flex-shrink-0" />
+                      <span className="truncate">{task.category}</span>
                     </span>
                                     )}
                                 </div>
+
+                                {/* Buttons - Full width on mobile, inline on desktop */}
+                                <div className="flex flex-col sm:flex-row gap-2 mt-3 sm:hidden">
+                                    <button
+                                        onClick={() => onEdit(task)}
+                                        className="w-full px-3 py-2 bg-[#1C6AFF] hover:bg-[#1557CC] text-white rounded-lg transition-colors text-sm font-medium"
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        onClick={() => onDelete(task.id)}
+                                        className="w-full px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors text-sm font-medium"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
-                            <div className="flex gap-2">
+
+                            {/* Desktop Buttons - Hidden on mobile */}
+                            <div className="hidden sm:flex gap-2 flex-shrink-0">
                                 <button
                                     onClick={() => onEdit(task)}
                                     className="px-3 py-1.5 bg-[#1C6AFF] hover:bg-[#1557CC] text-white rounded-lg transition-colors text-sm font-medium"
@@ -2384,7 +2416,7 @@ export function EditTaskModal({
 /*                           TEAM PAGE COMPONENTS                             */
 /* ========================================================================== */
 
-export function TeamHeader({ onAddMember }: { onAddMember: () => void }) {
+export function TeamHeader({ onAddMember, onMenuClick }: { onAddMember: () => void; onMenuClick?: () => void }) {
     const accentColor = useAccentColor();
     const gradients = useGradientColors();
     const { theme, setTheme } = useSettings();
@@ -2401,6 +2433,15 @@ export function TeamHeader({ onAddMember }: { onAddMember: () => void }) {
         <header className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
+                    {onMenuClick && (
+                        <button
+                            onClick={onMenuClick}
+                            className="lg:hidden w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                            aria-label="Toggle menu"
+                        >
+                            <Menu size={20} className="text-gray-700 dark:text-gray-300" />
+                        </button>
+                    )}
                     <div>
                         <h1 className="text-2xl font-bold text-[#111827] dark:text-white">Team</h1>
                         <p className="text-sm text-gray-500 dark:text-gray-400">Manage your team and collaborate</p>
@@ -2874,7 +2915,7 @@ export function AIHeader({ onNewChat, onMenuClick }: { onNewChat: () => void; on
     };
 
     return (
-        <header className="relative border-b border-gray-200 dark:border-gray-700/50 bg-gradient-to-r from-white via-gray-50/50 to-white dark:from-[#0A0E1A] dark:via-[#1A1F2E]/50 dark:to-[#0A0E1A] px-4 sm:px-6 lg:px-8 py-8">
+        <header className="relative border-b border-gray-200 dark:border-gray-700/50 bg-gradient-to-r from-white via-gray-50/50 to-white dark:from-[#0A0E1A] dark:via-[#1A1F2E]/50 dark:to-[#0A0E1A] px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
             {/* Animated Background Gradient */}
             <div
                 className="absolute inset-0 animate-pulse opacity-30"
@@ -2884,57 +2925,61 @@ export function AIHeader({ onNewChat, onMenuClick }: { onNewChat: () => void; on
             />
 
             <div className="relative z-10 flex items-center justify-between max-w-7xl mx-auto">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-4">
                     {onMenuClick && (
                         <button
                             onClick={onMenuClick}
-                            className="lg:hidden w-11 h-11 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm"
+                            className="lg:hidden w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm"
                             aria-label="Toggle menu"
                         >
                             <Menu size={20} className="text-gray-700 dark:text-gray-300" />
                         </button>
                     )}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 sm:gap-4">
                         <div className="relative">
                             <div
-                                className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg"
+                                className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg"
                                 style={{
                                     background: `linear-gradient(135deg, ${gradients.primary}, ${gradients.secondary})`,
                                     boxShadow: `0 10px 30px ${accentColor}40`
                                 }}
                             >
-                                <Sparkles size={28} className="text-white" />
+                                <Sparkles size={20} className="text-white sm:hidden" />
+                                <Sparkles size={24} className="text-white hidden sm:block lg:hidden" />
+                                <Sparkles size={28} className="text-white hidden lg:block" />
                             </div>
-                            <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-[#0A0E1A] animate-pulse" />
+                            <div className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full border-2 border-white dark:border-[#0A0E1A] animate-pulse" />
                         </div>
                         <div>
-                            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">AI Assistant</h1>
-                            <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-2">
-                                <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                                Online & ready to help
+                            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">AI Assistant</h1>
+                            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1.5 sm:gap-2">
+                                <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse" />
+                                <span className="hidden sm:inline">Online & ready to help</span>
+                                <span className="sm:hidden">Online</span>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                     <button
                         onClick={toggleTheme}
-                        className="w-11 h-11 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm"
+                        className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm"
                         aria-label="Toggle theme"
                     >
                         {theme === 'dark' ? (
-                            <Sun size={20} className="text-yellow-500" />
+                            <Sun size={18} className="text-yellow-500 sm:w-5 sm:h-5" />
                         ) : (
-                            <Moon size={20} className="text-gray-700" />
+                            <Moon size={18} className="text-gray-700 sm:w-5 sm:h-5" />
                         )}
                     </button>
                     <button
                         onClick={onNewChat}
-                        className="flex items-center gap-2 px-5 py-2.5 text-white rounded-xl hover:shadow-xl transition-all shadow-lg font-medium"
+                        className="flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-5 sm:py-2.5 text-white rounded-xl hover:shadow-xl transition-all shadow-lg text-sm sm:text-base font-medium"
                         style={{ background: `linear-gradient(135deg, ${gradients.primary}, ${gradients.secondary})` }}
                     >
-                        <Plus size={20} />
+                        <Plus size={18} className="sm:w-5 sm:h-5" />
                         <span className="hidden sm:inline">New Chat</span>
+                        <span className="sm:hidden">New</span>
                     </button>
                 </div>
             </div>
@@ -2976,38 +3021,40 @@ export function WelcomeCard({ onActionClick }: { onActionClick: (message: string
     ];
 
     return (
-        <div className="text-center py-6 px-4">
-            <div className="relative inline-block mb-6">
+        <div className="text-center py-4 sm:py-6 px-4">
+            <div className="relative inline-block mb-4 sm:mb-6">
                 <div
                     className="absolute inset-0 rounded-full blur-2xl opacity-30 animate-pulse"
                     style={{ background: `linear-gradient(135deg, ${gradients.primary}, ${gradients.secondary})` }}
                 />
                 <div
-                    className="relative w-24 h-24 rounded-3xl mx-auto flex items-center justify-center shadow-2xl"
+                    className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-2xl sm:rounded-3xl mx-auto flex items-center justify-center shadow-2xl"
                     style={{
                         background: `linear-gradient(135deg, ${gradients.primary}, ${gradients.secondary})`,
                         boxShadow: `0 20px 60px ${accentColor}50`
                     }}
                 >
-                    <Sparkles size={48} className="text-white" />
+                    <Sparkles size={32} className="text-white sm:hidden" />
+                    <Sparkles size={40} className="text-white hidden sm:block lg:hidden" />
+                    <Sparkles size={48} className="text-white hidden lg:block" />
                 </div>
             </div>
 
-            <h2 className={`text-4xl font-bold ${isDark ? 'text-white' : 'text-gray-900'} mb-4`}>
+            <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${isDark ? 'text-white' : 'text-gray-900'} mb-2 sm:mb-4 px-4`}>
                 Welcome to AI Assistant
             </h2>
-            <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'} mb-8 max-w-2xl mx-auto`}>
+            <p className={`text-sm sm:text-base lg:text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'} mb-6 sm:mb-8 max-w-2xl mx-auto px-4`}>
                 Your intelligent companion for productivity, wellbeing, and collaboration
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-5 max-w-4xl mx-auto">
                 {actions.map((action) => {
                     const Icon = action.icon;
                     return (
                         <button
                             key={action.title}
                             onClick={() => onActionClick(action.message)}
-                            className={`group relative p-6 rounded-2xl ${isDark ? 'bg-gray-800/50 border-gray-700/50' : 'bg-white border-gray-200'} border hover:border-transparent hover:shadow-2xl transition-all duration-300 text-left overflow-hidden backdrop-blur-sm`}
+                            className={`group relative p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl ${isDark ? 'bg-gray-800/50 border-gray-700/50' : 'bg-white border-gray-200'} border hover:border-transparent hover:shadow-2xl transition-all duration-300 text-left overflow-hidden backdrop-blur-sm`}
                             style={{
                                 boxShadow: 'none',
                             }}
@@ -3023,18 +3070,20 @@ export function WelcomeCard({ onActionClick }: { onActionClick: (message: string
                                 style={{ background: `linear-gradient(135deg, ${gradients.primary}, ${gradients.secondary})` }}
                             />
 
-                            <div className="relative flex items-start gap-4">
+                            <div className="relative flex items-start gap-3 sm:gap-4">
                                 <div
-                                    className="w-14 h-14 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm"
+                                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm flex-shrink-0"
                                     style={{ backgroundColor: `${accentColor}15` }}
                                 >
-                                    <Icon size={26} style={{ color: accentColor }} />
+                                    <Icon size={22} className="sm:hidden" style={{ color: accentColor }} />
+                                    <Icon size={26} className="hidden sm:block" style={{ color: accentColor }} />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <h3 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'} mb-1.5 text-lg`}>{action.title}</h3>
-                                    <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'} leading-relaxed`}>{action.description}</p>
+                                    <h3 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'} mb-1 sm:mb-1.5 text-base sm:text-lg`}>{action.title}</h3>
+                                    <p className={`text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'} leading-relaxed`}>{action.description}</p>
                                 </div>
-                                <ChevronRight size={22} className={`${isDark ? 'text-gray-600' : 'text-gray-300'} transition-colors flex-shrink-0 mt-1`} style={{ color: 'inherit' }} />
+                                <ChevronRight size={18} className={`${isDark ? 'text-gray-600' : 'text-gray-300'} transition-colors flex-shrink-0 mt-1 sm:hidden`} style={{ color: 'inherit' }} />
+                                <ChevronRight size={22} className={`${isDark ? 'text-gray-600' : 'text-gray-300'} transition-colors flex-shrink-0 mt-1 hidden sm:block`} style={{ color: 'inherit' }} />
                             </div>
                         </button>
                     );
@@ -3057,22 +3106,22 @@ export function Suggestions({ onSuggestionClick }: { onSuggestionClick: (message
     ];
 
     return (
-        <div className={`-mt-4 p-6 rounded-2xl border ${isDark ? 'bg-gray-800/30 border-gray-700' : 'bg-white/50 border-gray-200'}`}>
-            <div className="flex items-center gap-2 mb-4">
+        <div className={`-mt-4 p-4 sm:p-6 rounded-xl sm:rounded-2xl border ${isDark ? 'bg-gray-800/30 border-gray-700' : 'bg-white/50 border-gray-200'}`}>
+            <div className="flex items-center gap-2 mb-3 sm:mb-4">
                 <div
-                    className="w-1 h-5 rounded-full"
+                    className="w-1 h-4 sm:h-5 rounded-full"
                     style={{ background: `linear-gradient(180deg, ${gradients.primary}, ${gradients.secondary})` }}
                 />
-                <p className={`font-semibold ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>Quick suggestions</p>
+                <p className={`text-sm sm:text-base font-semibold ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>Quick suggestions</p>
             </div>
-            <div className="flex gap-3 flex-wrap justify-center">
+            <div className="flex gap-2 sm:gap-3 flex-wrap justify-center">
                 {suggestions.map((suggestion) => {
                     const Icon = suggestion.icon;
                     return (
                         <button
                             key={suggestion.text}
                             onClick={() => onSuggestionClick(suggestion.text)}
-                            className={`group relative flex items-center gap-3 px-5 py-3.5 rounded-xl ${isDark ? 'bg-gray-800/80 border-gray-700/50' : 'bg-gray-50/50 border-gray-200/50'} border text-sm ${isDark ? 'text-gray-200' : 'text-gray-700'} transition-all duration-300 hover:shadow-lg overflow-hidden`}
+                            className={`group relative flex items-center gap-2 sm:gap-3 px-3 py-2.5 sm:px-5 sm:py-3.5 rounded-lg sm:rounded-xl ${isDark ? 'bg-gray-800/80 border-gray-700/50' : 'bg-gray-50/50 border-gray-200/50'} border text-xs sm:text-sm ${isDark ? 'text-gray-200' : 'text-gray-700'} transition-all duration-300 hover:shadow-lg overflow-hidden`}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.borderColor = accentColor;
                                 e.currentTarget.style.transform = 'translateY(-2px)';
@@ -3096,8 +3145,9 @@ export function Suggestions({ onSuggestionClick }: { onSuggestionClick: (message
                                     background: `linear-gradient(135deg, ${accentColor}08, ${accentColor}03)`
                                 }}
                             />
-                            <div className="relative flex items-center gap-3">
-                                <Icon size={18} className={`${isDark ? 'text-gray-400' : 'text-gray-400'} transition-colors duration-300`} />
+                            <div className="relative flex items-center gap-2 sm:gap-3">
+                                <Icon size={16} className={`${isDark ? 'text-gray-400' : 'text-gray-400'} transition-colors duration-300 sm:hidden`} />
+                                <Icon size={18} className={`${isDark ? 'text-gray-400' : 'text-gray-400'} transition-colors duration-300 hidden sm:block`} />
                                 <span className="font-medium">{suggestion.text}</span>
                             </div>
                         </button>
@@ -3130,26 +3180,27 @@ export function ChatArea({
 
     return (
         <div className="flex flex-col h-full">
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-6">
                 {messages.map((message, index) => (
                     <div
                         key={message.id}
-                        className={`flex gap-4 ${message.role === "user" ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom-2 duration-500`}
+                        className={`flex gap-2 sm:gap-3 lg:gap-4 ${message.role === "user" ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom-2 duration-500`}
                         style={{ animationDelay: `${index * 50}ms` }}
                     >
                         {message.role === "assistant" && (
                             <div
-                                className="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                                className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg"
                                 style={{
                                     background: `linear-gradient(135deg, ${gradients.primary}, ${gradients.secondary})`,
                                     boxShadow: `0 10px 25px ${accentColor}30`
                                 }}
                             >
-                                <Bot size={20} className="text-white" />
+                                <Bot size={16} className="text-white sm:hidden" />
+                                <Bot size={20} className="text-white hidden sm:block" />
                             </div>
                         )}
                         <div
-                            className={`max-w-2xl p-5 rounded-2xl shadow-sm ${
+                            className={`max-w-[85%] sm:max-w-2xl p-3 sm:p-4 lg:p-5 rounded-xl sm:rounded-2xl shadow-sm ${
                                 message.role === "user"
                                     ? "text-white shadow-lg"
                                     : `${isDark ? 'bg-gray-800/80 text-white border-gray-700/50' : 'bg-white text-gray-900 border-gray-200'} border backdrop-blur-sm`
@@ -3163,11 +3214,11 @@ export function ChatArea({
                                     : {}
                             }
                         >
-                            <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                            <p className="whitespace-pre-wrap leading-relaxed text-sm sm:text-base">{message.content}</p>
                         </div>
                         {message.role === "user" && (
                             <div
-                                className="w-10 h-10 rounded-2xl flex-shrink-0 shadow-lg"
+                                className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl flex-shrink-0 shadow-lg"
                                 style={{
                                     background: `linear-gradient(135deg, ${gradients.secondary}, ${gradients.primary})`,
                                     boxShadow: `0 10px 25px ${accentColor}30`
@@ -3177,21 +3228,22 @@ export function ChatArea({
                     </div>
                 ))}
                 {isTyping && (
-                    <div className="flex gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                    <div className="flex gap-2 sm:gap-3 lg:gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
                         <div
-                            className="w-10 h-10 rounded-2xl flex items-center justify-center shadow-lg"
+                            className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg"
                             style={{
                                 background: `linear-gradient(135deg, ${gradients.primary}, ${gradients.secondary})`,
                                 boxShadow: `0 10px 25px ${accentColor}30`
                             }}
                         >
-                            <Bot size={20} className="text-white" />
+                            <Bot size={16} className="text-white sm:hidden" />
+                            <Bot size={20} className="text-white hidden sm:block" />
                         </div>
-                        <div className={`${isDark ? 'bg-gray-800/80 border-gray-700/50' : 'bg-white border-gray-200'} p-5 rounded-2xl border backdrop-blur-sm shadow-sm`}>
+                        <div className={`${isDark ? 'bg-gray-800/80 border-gray-700/50' : 'bg-white border-gray-200'} p-3 sm:p-4 lg:p-5 rounded-xl sm:rounded-2xl border backdrop-blur-sm shadow-sm`}>
                             <div className="flex gap-1.5">
-                                <div className="w-2.5 h-2.5 rounded-full animate-bounce" style={{ backgroundColor: accentColor, animationDelay: "0ms" }} />
-                                <div className="w-2.5 h-2.5 rounded-full animate-bounce" style={{ backgroundColor: accentColor, animationDelay: "150ms" }} />
-                                <div className="w-2.5 h-2.5 rounded-full animate-bounce" style={{ backgroundColor: accentColor, animationDelay: "300ms" }} />
+                                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full animate-bounce" style={{ backgroundColor: accentColor, animationDelay: "0ms" }} />
+                                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full animate-bounce" style={{ backgroundColor: accentColor, animationDelay: "150ms" }} />
+                                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full animate-bounce" style={{ backgroundColor: accentColor, animationDelay: "300ms" }} />
                             </div>
                         </div>
                     </div>
@@ -3199,8 +3251,8 @@ export function ChatArea({
                 <div ref={messagesEndRef} />
             </div>
 
-            <div className={`border-t ${isDark ? 'border-gray-700/50' : 'border-gray-200'} p-6`}>
-                <div className="flex gap-3 max-w-4xl mx-auto">
+            <div className={`border-t ${isDark ? 'border-gray-700/50' : 'border-gray-200'} p-3 sm:p-4 lg:p-6`}>
+                <div className="flex gap-2 sm:gap-3 max-w-4xl mx-auto">
                     <input
                         type="text"
                         value={inputValue}
@@ -3212,7 +3264,7 @@ export function ChatArea({
                             }
                         }}
                         placeholder="Type your message..."
-                        className={`flex-1 px-5 py-4 ${isDark ? 'bg-gray-900/50 border-gray-700 text-white placeholder-gray-400' : 'bg-white border-gray-200 text-gray-900 placeholder-gray-500'} border rounded-2xl focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
+                        className={`flex-1 px-3 py-3 sm:px-4 sm:py-3.5 lg:px-5 lg:py-4 text-sm sm:text-base ${isDark ? 'bg-gray-900/50 border-gray-700 text-white placeholder-gray-400' : 'bg-white border-gray-200 text-gray-900 placeholder-gray-500'} border rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
                         style={{ '--tw-ring-color': accentColor } as React.CSSProperties}
                         onFocus={(e) => {
                             e.currentTarget.style.borderColor = accentColor;
@@ -3224,13 +3276,14 @@ export function ChatArea({
                     <button
                         onClick={() => onSendMessage(inputValue)}
                         disabled={!inputValue.trim()}
-                        className="px-6 py-4 text-white rounded-2xl hover:shadow-xl transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none font-medium"
+                        className="px-4 py-3 sm:px-5 sm:py-3.5 lg:px-6 lg:py-4 text-white rounded-xl sm:rounded-2xl hover:shadow-xl transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none font-medium"
                         style={{
                             background: `linear-gradient(135deg, ${gradients.primary}, ${gradients.secondary})`,
                             boxShadow: `0 10px 30px ${accentColor}30`
                         }}
                     >
-                        <Send size={20} />
+                        <Send size={18} className="sm:hidden" />
+                        <Send size={20} className="hidden sm:block" />
                     </button>
                 </div>
             </div>
@@ -3251,17 +3304,18 @@ export function ChatHistorySection({
     const isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
     return (
-        <div className="p-6">
-            <h3 className={`font-semibold text-xl ${isDark ? 'text-white' : 'text-gray-900'} mb-6 flex items-center gap-2`}>
-                <Clock size={20} style={{ color: accentColor }} />
+        <div className="p-4 sm:p-6">
+            <h3 className={`font-semibold text-lg sm:text-xl ${isDark ? 'text-white' : 'text-gray-900'} mb-4 sm:mb-6 flex items-center gap-2`}>
+                <Clock size={18} className="sm:hidden" style={{ color: accentColor }} />
+                <Clock size={20} className="hidden sm:block" style={{ color: accentColor }} />
                 Recent Conversations
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {chatHistory.slice(0, 4).map((chat) => (
                     <button
                         key={chat.id}
                         onClick={() => onChatSelect(chat)}
-                        className={`group relative p-5 rounded-2xl ${isDark ? 'bg-gray-800/50 border-gray-700/50' : 'bg-white border-gray-200'} border hover:border-transparent hover:shadow-xl transition-all text-left overflow-hidden backdrop-blur-sm`}
+                        className={`group relative p-4 sm:p-5 rounded-xl sm:rounded-2xl ${isDark ? 'bg-gray-800/50 border-gray-700/50' : 'bg-white border-gray-200'} border hover:border-transparent hover:shadow-xl transition-all text-left overflow-hidden backdrop-blur-sm`}
                         onMouseEnter={(e) => {
                             e.currentTarget.style.boxShadow = `0 20px 40px ${accentColor}30`;
                         }}
@@ -3275,15 +3329,15 @@ export function ChatHistorySection({
                         />
 
                         <div className="relative">
-                            <div className="flex items-start justify-between mb-3">
-                                <p className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'} line-clamp-1 pr-2`}>{chat.title}</p>
-                                <span className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'} whitespace-nowrap`}>
-                  {new Date(chat.timestamp).toLocaleDateString()}
+                            <div className="flex items-start justify-between mb-2 sm:mb-3">
+                                <p className={`font-semibold text-sm sm:text-base ${isDark ? 'text-white' : 'text-gray-900'} line-clamp-1 pr-2`}>{chat.title}</p>
+                                <span className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'} whitespace-nowrap flex-shrink-0`}>
+                  {new Date(chat.timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                 </span>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 flex-wrap">
                 <span
-                    className="inline-block px-3 py-1 rounded-full text-xs font-medium text-white shadow-sm"
+                    className="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium text-white shadow-sm"
                     style={{ background: `linear-gradient(135deg, ${gradients.primary}, ${gradients.secondary})` }}
                 >
                   {chat.category}
@@ -4003,7 +4057,7 @@ export function AccountSettings({
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
                     <input
                         type="text"
-                        defaultValue="John Doe"
+                        defaultValue="User"
                         className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1C6AFF]"
                     />
                 </div>
@@ -4011,7 +4065,7 @@ export function AccountSettings({
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
                     <input
                         type="email"
-                        defaultValue="john@colony.com"
+                        defaultValue="user@colony.com"
                         className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1C6AFF]"
                     />
                 </div>
@@ -6263,7 +6317,7 @@ function TasksPage({ recentActivities, setRecentActivities }: { recentActivities
     );
 }
 
-export function TeamPage({ onNavigate, profileImage, recentActivities = [], setRecentActivities = () => {} }: { onNavigate?: (page: string) => void; profileImage?: string | null; recentActivities?: any[]; setRecentActivities?: (activities: any[]) => void }) {
+export function TeamPage({ onNavigate, profileImage, onSignOut, recentActivities = [], setRecentActivities = () => {} }: { onNavigate?: (page: string) => void; profileImage?: string | null; onSignOut?: () => void; recentActivities?: any[]; setRecentActivities?: (activities: any[]) => void }) {
     const [members, setMembers] = useState<TeamMember[]>([]);
 
     const [projects, setProjects] = useState<Project[]>([]);
@@ -6652,12 +6706,14 @@ export function TeamPage({ onNavigate, profileImage, recentActivities = [], setR
                 onNavigate={onNavigate || (() => {})}
                 activePage="team"
                 profileImage={profileImage || null}
+                onSignOut={onSignOut}
             />
 
             <div className="flex-1 flex flex-col overflow-hidden">
                 {/* Header */}
                 <TeamHeader
                     onAddMember={() => setIsAddModalOpen(true)}
+                    onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 />
 
                 <div className="flex-1 overflow-hidden flex">

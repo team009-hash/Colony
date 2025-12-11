@@ -646,6 +646,7 @@ function AIAssistantPage({ onNavigate, profileImage, onSignOut }) {
                 onNavigate={onNavigate}
                 activePage="ai-assistant"
                 profileImage={profileImage}
+                onSignOut={onSignOut}
             />
 
             <div className="flex-1 flex flex-col overflow-hidden" style={{ backgroundColor: bgColor }}>
@@ -656,21 +657,26 @@ function AIAssistantPage({ onNavigate, profileImage, onSignOut }) {
 
                 <main className="flex-1 overflow-hidden" style={{ backgroundColor: bgColor }}>
                     {showWelcome ? (
-                        <div className="h-full flex flex-col px-6 lg:px-12 pt-12">
-                            <div className="flex-1">
+                        <div className="h-full flex flex-col">
+                            {/* Welcome Section - Scrollable */}
+                            <div className="flex-1 overflow-y-auto px-3 sm:px-4 lg:px-6 xl:px-12 pt-4 sm:pt-8 lg:pt-12 pb-4">
                                 <WelcomeCard onActionClick={handleSendMessage} />
 
                                 {chatHistory.length > 0 && (
-                                    <div className={`mt-8 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} pt-8`}>
+                                    <div className={`mt-6 sm:mt-8 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} pt-6 sm:pt-8`}>
                                         <ChatHistorySection
                                             chatHistory={chatHistory}
                                             onChatSelect={handleChatSelect}
                                         />
                                     </div>
                                 )}
+
+                                {/* Spacer to ensure content doesn't hide behind suggestions on mobile */}
+                                <div className="h-32 sm:h-0" aria-hidden="true" />
                             </div>
 
-                            <div className="pb-6">
+                            {/* Suggestions - Fixed at bottom with backdrop */}
+                            <div className={`flex-shrink-0 sticky bottom-0 px-3 sm:px-4 lg:px-6 xl:px-12 pb-4 sm:pb-6 pt-2 ${isDark ? 'bg-gradient-to-t from-[#0A0E1A] via-[#0A0E1A]/95 to-transparent' : 'bg-gradient-to-t from-[#F4F6FA] via-[#F4F6FA]/95 to-transparent'}`}>
                                 <Suggestions onSuggestionClick={handleSendMessage} />
                             </div>
                         </div>
@@ -1271,12 +1277,12 @@ function DashboardApp() {
 
 export default function Dashboard() {
     return (
-            <SettingsProvider>
-                <WidgetProvider>
-                    <div className="colony-dashboard">
-                        <DashboardApp/>
-                    </div>
-                </WidgetProvider>
-            </SettingsProvider>
-);
+        <SettingsProvider>
+            <WidgetProvider>
+                <div className="colony-dashboard">
+                    <DashboardApp/>
+                </div>
+            </WidgetProvider>
+        </SettingsProvider>
+    );
 }

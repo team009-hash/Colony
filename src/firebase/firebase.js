@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 
 // Your Firebase config
 const firebaseConfig = {
-    apiKey: "AIzaSyCIQbiAW3RDBXv-IW8gygMr3zqYAaq3phk",
-    authDomain: "colony-b66cc.firebaseapp.com",
-    projectId: "colony-b66cc",
-    storageBucket: "colony-b66cc.firebasestorage.app",
-    messagingSenderId: "1038200757108",
-    appId: "1:1038200757108:web:b44a0ab80d18c58b57aa21",
-    measurementId: "G-WQPM6RGFE7",
+    apiKey: "AIzaSyChLyw25A6zysvkUJzWbG2K6myDu1i1peo",
+    authDomain: "colony-platform.firebaseapp.com",
+    projectId: "colony-platform",
+    storageBucket: "colony-platform.firebasestorage.app",
+    messagingSenderId: "183151997888",
+    appId: "1:183151997888:web:4ae8d8b4dbad8a348f8e25",
+    measurementId: "G-S7KS4D8TYM"
 };
 
 const app = initializeApp(firebaseConfig);
